@@ -1,0 +1,35 @@
+<div id="adblock-detected" class="hidden text-red-300 text-base">
+    AdBlock está activo. Por favor desactívalo para continuar.
+</div>
+
+<script>
+
+    
+  const adblockText = document.getElementById('adblock-detected') as HTMLDivElement;
+  const checkAdBlockWithImages = () => {
+    var imgUrls = [
+      "https://ad.doubleclick.net/ddm/trackimp/N1234.567890/B12345678.1234567890",
+      "https://static.criteo.net/images/pixel.gif?ch=1"
+    ];
+
+    imgUrls.forEach(function (url) {
+      var img = document.createElement("img");
+      img.src = url;
+
+      img.onload = function () {
+        console.log("Se cargaron: " + url);
+      };
+
+      img.onerror = function () {
+        adblockText.classList.remove("hidden"); // Show the trending searches div
+        console.log("No se pudo cargar: " + url);
+      };
+
+      document.body.appendChild(img);
+    });
+  };
+
+  window.onload = function () {
+    checkAdBlockWithImages();
+  };
+</script>

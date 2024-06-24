@@ -1,0 +1,29 @@
+<div id="alert-banner" class="hidden w-full px-3 py-1" role="alert">
+    <div class="flex items-center justify-center mx-auto">
+        <p class="text-center text-xs font-medium text-neutral-400">
+            Si el sitio no se carga correctamente, desactivar el bloqueador de anuncios.
+        </p>
+        <button id="alert-button" type="button" class="ms-3 rounded-full p-px text-neutral-400 hover:text-white hover:bg-neutral-400/10" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-[17px]">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+            <span class="sr-only">Dismiss</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    const alertBanner = document.getElementById('alert-banner') as HTMLElement;
+    const alertButton = document.getElementById('alert-button') as HTMLButtonElement;
+
+    if (localStorage.getItem('alertDismissed')) {
+        alertBanner.remove();
+    } else {
+        alertBanner.classList.remove('hidden');
+    };
+
+    alertButton.addEventListener('click', () => {
+        localStorage.setItem('alertDismissed', 'true');
+        alertBanner.remove();
+    });
+</script>
