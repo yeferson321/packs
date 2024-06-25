@@ -1,35 +1,41 @@
 <div id="adblock-detected" class="hidden text-red-300 text-base">
-    AdBlock está activo. Por favor desactívalo para continuar.
+  AdBlock está activo. Por favor desactívalo para continuar.
 </div>
 
 <script>
+  const adblockText = document.getElementById(
+    "adblock-detected"
+  ) as HTMLDivElement;
 
-    
-  const adblockText = document.getElementById('adblock-detected') as HTMLDivElement;
-  const checkAdBlockWithImages = () => {
-    var imgUrls = [
-      "https://ad.doubleclick.net/ddm/trackimp/N1234.567890/B12345678.1234567890",
-      "https://static.criteo.net/images/pixel.gif?ch=1"
-    ];
+  const checkAdBlockWithScripts = () => {
+    // Crear un nuevo elemento script
+    var scriptUrls = ["https://cdn.ampproject.org/v0/amp-ad-0.1.js", "https//bashfortitudeaffability.com/d42aed506a2fb4c4a0ac003849b87f67/invoke.js"];
 
-    imgUrls.forEach(function (url) {
-      var img = document.createElement("img");
-      img.src = url;
+    scriptUrls.forEach(function (url) {
+      var script = document.createElement("script");
 
-      img.onload = function () {
-        console.log("Se cargaron: " + url);
+      script.type = "text/javascript";
+
+      script.src = url;
+
+      script.onload = () => {
+        console.log("El script se cargó correctamente.");
       };
 
-      img.onerror = function () {
+      script.onerror = () => {
+        console.log("Hubo un error al cargar el script." + url);
         adblockText.classList.remove("hidden"); // Show the trending searches div
-        console.log("No se pudo cargar: " + url);
       };
 
-      document.body.appendChild(img);
+      document.head.appendChild(script);
+
+      setTimeout(function () {
+        document.head.removeChild(script);
+      }, 5000);
     });
   };
 
-  window.onload = function () {
-    checkAdBlockWithImages();
+  window.onload = () => {
+    checkAdBlockWithScripts();
   };
 </script>
