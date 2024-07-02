@@ -1,25 +1,11 @@
 ---
-import type { Packs } from "../utils/types/definitions";
-import Pagination from "./Pagination.astro";
-/* import { getPacks } from "../utils/feath"; */
-/* import Pagination from "./Pagination.astro"; */
-
-/* const page = parseInt(Astro.url.searchParams.get("page") || "0");
-const search = Astro.url.searchParams.get("search") || ""
-
-const limit = 12;
-const offset = page ? (limit * page) - limit : 0
-
-const tipo = "caseros"
-
-const { data }: PacksResponse = await getPacks(limit, offset, tipo, search);
-
-console.log(data.stats.total) */
+import type { Packs } from '../utils/types/definitions';
+import Pagination from './Pagination.astro';
 
 interface Props { 
     totalItems: number;  
     packs: Packs[];
-}
+};
 
 const { totalItems, packs } = Astro.props;
 ---
