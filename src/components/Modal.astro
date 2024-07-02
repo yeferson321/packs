@@ -1,0 +1,61 @@
+<slot name="button" />
+
+<div id="search-modal" data-open="false" class="hidden modal-animation absolute z-20">
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto backdrop-blur-sm dark:bg-black/80">
+        <slot name="content" />
+    </div>
+</div>
+
+<style>
+    .modal-animation {
+        animation-name: fadeIn;
+        animation-duration: 0.1s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    const searchModal = document.getElementById('search-modal') as HTMLElement;
+    const closeModal = document.getElementById('close-modal') as HTMLElement;
+    const openModal = document.getElementById('open-modal') as HTMLButtonElement;
+
+    interface OpenChangeEventDetail {
+        open: boolean;
+    };
+
+    const setOpenState = (isOpen: boolean) => {
+        document.body.classList.toggle('overflow-hidden', isOpen);
+        searchModal.dataset.open = isOpen.toString();
+        searchModal.classList.toggle('hidden', !isOpen);
+        
+        const event = new CustomEvent<OpenChangeEventDetail>('modalStateChange', {
+            detail: {
+                open: isOpen
+            },
+        });
+        searchModal.dispatchEvent(event);
+    };
+
+    openModal.addEventListener('click', () => {
+        setOpenState(true);
+    });
+
+    closeModal.addEventListener('click', () => {
+        setOpenState(false);
+    });
+
+    // Add event listener for window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 700) {
+        setOpenState(false);
+      };
+    });
+</script> 

@@ -1,0 +1,31 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import { getRoutePacks } from '../utils/feath';
+import type { PacksResponse } from '../utils/types/definitions';
+
+export function getStaticPaths() {
+  return [
+    {params: {tabs: 'caseros'}},
+    {params: {tabs: 'onlyfans'}},
+    {params: {tabs: 'telegram'}},
+  ];
+};
+
+/* const url = Astro.params. */
+const { tabs } = Astro.params;
+
+/* 
+console.log(url) */
+const { data }: PacksResponse = await getRoutePacks(tabs);
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<div class="max-w-screen-lg mx-auto p-4">
+			<Gallery packs={data.packs} totalItems={data.stats.total}/>
+		</div>
+	</main>
+</Layout>

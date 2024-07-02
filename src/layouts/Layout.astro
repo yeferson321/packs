@@ -1,10 +1,13 @@
 ---
 import AdBlockDetector from '../components/AdBlockDetector.astro';
-import Gallery from '../components/Gallery.astro';
+import Footer from '../components/Footer.astro';
+/* import Gallery from '../components/Gallery.astro'; */
 import Navbar from '../components/Navbar.astro';
+
 import Tabs from '../components/Tabs.astro';
-import Trends from '../components/Trends.astro';
+/* import Trends from '../components/Trends.astro'; */
 import Warning from '../components/Warning.astro'
+import AdsFooter from '../components/AdsFooter.astro';
 
 interface Props {
 	title: string;
@@ -23,57 +26,32 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
-<!--  <script type='text/javascript' src='//bashfortitudeaffability.com/ae/93/d2/ae93d2cbe6d6cb244b8547c077e3db0a.js'></script> -->
 	</head>
 	<body>
+
 		<AdBlockDetector/>
 		<Warning/>
 
 		<div class="bg-neutral-950 border-b border-neutral-900">
+
 			<div class="max-w-screen-lg mx-auto">
 
-				<script type="text/javascript">
-					atOptions = {
-						'key' : 'b41012cf2ae5399724070c2dcd5ea082',
-						'format' : 'iframe',
-						'height' : 60,
-						'width' : 468,
-						'params' : {}
-					};
-				</script>
-				<script type="text/javascript" src="//bashfortitudeaffability.com/b41012cf2ae5399724070c2dcd5ea082/invoke.js"></script>
-
-				
 				<Navbar/>
-			<!-- 	<Searcher/> -->
+	
 				<Tabs/>
 				
 			</div>
-		</div>
 
-		<script type="text/javascript">
-			atOptions = {
-				'key' : '3aa885736775fa2a26fe037133fd8fe0',
-				'format' : 'iframe',
-				'height' : 90,
-				'width' : 728,
-				'params' : {}
-			};
-		</script>
-		<script type="text/javascript" src="//bashfortitudeaffability.com/3aa885736775fa2a26fe037133fd8fe0/invoke.js"></script>
+		</div>
 
 		<slot />
 
-		<script async="async" data-cfasync="false" src="//bashfortitudeaffability.com/74ab1e19ed6d6ad455a98aa963720ffb/invoke.js"></script>
-<div id="container-74ab1e19ed6d6ad455a98aa963720ffb"></div>
+		<AdsFooter/>
 
-	<!-- 	<script is:inline src="//bashfortitudeaffability.com/40/3c/d5/403cd58b57a2d7e97ac12e748eee98dd.js"></script>
- -->
+		<Footer/>
+
 	</body>
 </html>
-
-
-
 
 <style is:global>
 	html {
@@ -84,6 +62,7 @@ const { title } = Astro.props;
 	.scrollbar {
 		scrollbar-color: #f59e0b;
 		scrollbar-width: 5px;
+		overflow: hidden;
 	}
 
 	.scrollbar::-webkit-scrollbar {

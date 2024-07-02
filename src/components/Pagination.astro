@@ -1,0 +1,87 @@
+---
+interface Props {   
+    totalItems: number;
+    itemsPerPage: number;
+    maxPages: number;
+    minPages: number;
+}
+
+const { totalItems, itemsPerPage, maxPages, minPages } = Astro.props;
+
+const currentPage = parseInt(Astro.url.searchParams.get("page") || "1");
+const totalPages = Math.ceil(totalItems / itemsPerPage);
+const hideLeftContent = currentPage > minPages && totalPages > maxPages;
+const hideRightContent = currentPage <= totalPages - minPages;
+
+const calculatePageRange = (currentPage: number, totalPages: number) => {
+    if (totalPages <= maxPages) return { startPage: 1, endPage: totalPages };
+    if (currentPage <= minPages) return { startPage: 1, endPage: maxPages };
+    if (currentPage > totalPages - minPages) return { startPage: totalPages - minPages, endPage: totalPages };
+
+    return {
+        startPage: currentPage - Math.floor((maxPages - 1) / 2),
+        endPage: currentPage + Math.floor((maxPages - 1) / 2),
+    };
+};
+
+const { startPage, endPage } = calculatePageRange(currentPage, totalPages);
+const pagesToShow = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+const createPageLink = (page: number) => {
+    const urlParams = Astro.url.searchParams;
+
+    // Establecer o eliminar el parámetro 'page' según sea necesario
+    if (page === 1) {
+        urlParams.delete('page');
+    } else {
+        urlParams.set('page', page.toString());
+    }
+
+    const queryString = urlParams.toString();
+
+    // Si la cadena de consulta está vacía, devolver '/'
+    return queryString ? `?${queryString}` : '/';
+};
+---
+
+<nav class="mt-12 flex items-center justify-center space-x-3 xs:space-x-6" aria-label="Pagination Navigation">
+    <a href={currentPage > 1 ? createPageLink(currentPage - 1) : ''} class={`p-1 xs:px-6 xs:py-2 rounded-lg bg-amber-500 ${currentPage > 1 ? 'hover:bg-amber-500/90' : 'cursor-not-allowed opacity-90'}`} aria-label="Previous page">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6 stroke-black">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+        </svg>
+    </a>
+    <ul class="inline-flex items-center space-x-3 text-base xs:text-lg font-medium text-white">
+        {hideLeftContent && (
+            <>
+                <li>
+                    <a href={createPageLink(currentPage)} class="flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                        1
+                    </a>
+                </li>
+                <span class="h-7 w-px bg-white" aria-hidden="true" />
+            </>
+        )}
+        {pagesToShow.map((page) => (
+            <li>
+                <a href={createPageLink(page)} class={`flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 ${ page === currentPage && 'border-2 border-amber-500' }`}>
+                    {page}
+                </a>
+            </li>
+        ))}
+        {hideRightContent && (
+            <>
+                <span class="h-7 w-px bg-white" aria-hidden="true" />
+                <li>
+                    <a href={createPageLink(totalPages)} class="flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                        {totalPages}
+                    </a>
+                </li>
+            </>
+        )}
+    </ul>
+    <a href={currentPage < totalPages ? createPageLink(currentPage + 1) : ''} class={`p-1 xs:px-6 xs:py-2 rounded-lg bg-amber-500 ${currentPage < totalPages ? 'hover:bg-amber-500/90' : 'cursor-not-allowed opacity-90'}`} aria-label="Next page">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6 stroke-black">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+        </svg>
+    </a>
+</nav>

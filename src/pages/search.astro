@@ -1,6 +1,8 @@
 ---
+
 import Layout from '../layouts/Layout.astro';
-import Trends from '../components/Trends.astro';
+/* import Card from '../components/Card.astro';
+import Trends from '../components/Trends.astro'; */
 import Gallery from '../components/Gallery.astro';
 import type { PacksResponse } from '../utils/types/definitions';
 import { getPacks } from '../utils/feath';
@@ -13,17 +15,13 @@ const offset = page ? (limit * page) - limit : 0
 
 const { data }: PacksResponse = await getPacks(limit, offset, search);
 
-console.log(data.stats.total) 
+console.log(data.stats.total)
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<div class="max-w-screen-lg mx-auto p-4">
-
-			<Trends trends={data.trends}/>
-
 			<Gallery packs={data.packs} totalItems={data.stats.total} />
-
 		</div>
 	</main>
 </Layout>
