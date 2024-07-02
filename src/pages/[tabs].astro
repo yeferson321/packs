@@ -1,29 +1,22 @@
 ---
+export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import Gallery from '../components/Gallery.astro';
-import { getRoutePacks } from '../utils/feath';
+import { getTabPacks } from '../utils/feath';
 import type { PacksResponse } from '../utils/types/definitions';
 
-export function getStaticPaths() {
-  return [
-    {params: {tabs: 'caseros'}},
-    {params: {tabs: 'onlyfans'}},
-    {params: {tabs: 'telegram'}},
-  ];
-};
+const { tabs = '' } = Astro.params;
+const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
+const itemsPerPage: number = 12;
+const offset: number = (page - 1) * itemsPerPage;
 
-/* const url = Astro.params. */
-const { tabs } = Astro.params;
-
-/* 
-console.log(url) */
-const { data }: PacksResponse = await getRoutePacks(tabs);
+const { data }: PacksResponse = await getTabPacks(itemsPerPage, offset, tabs);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={`Packs ${tabs}`}>
 	<main>
 		<div class="max-w-screen-lg mx-auto p-4">
-			<Gallery packs={data.packs} totalItems={data.stats.total}/>
+			<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage}/>
 		</div>
 	</main>
 </Layout>

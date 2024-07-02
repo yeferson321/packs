@@ -1,29 +1,25 @@
 ---
 export const prerender = false;
+import type { PacksResponse } from '../utils/types/definitions';
+import { getPacks } from '../utils/feath';
 import Layout from '../layouts/Layout.astro';
 import Trends from '../components/Trends.astro';
 import Gallery from '../components/Gallery.astro';
-import type { PacksResponse } from '../utils/types/definitions';
-import { getPacks } from '../utils/feath';
 
-const page = parseInt(Astro.url.searchParams.get("page") || "0");
-const search = Astro.url.searchParams.get("search") || ""
+const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
+const itemsPerPage: number = 12;
+const offset: number = (page - 1) * itemsPerPage;
 
-const limit = 12;
-const offset = page ? (limit * page) - limit : 0
-
-const { data }: PacksResponse = await getPacks(limit, offset, search);
-
-console.log(data.stats.total) 
+const { data }: PacksResponse = await getPacks(itemsPerPage, offset);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Packs">
 	<main>
 		<div class="max-w-screen-lg mx-auto p-4">
 
 			<Trends trends={data.trends}/>
 
-			<Gallery packs={data.packs} totalItems={data.stats.total} />
+			<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage} />
 
 		</div>
 	</main>

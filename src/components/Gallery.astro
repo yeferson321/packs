@@ -3,11 +3,12 @@ import type { Packs } from '../utils/types/definitions';
 import Pagination from './Pagination.astro';
 
 interface Props { 
-    totalItems: number;  
     packs: Packs[];
+    totalItems: number;  
+    itemsPerPage: number;
 };
 
-const { totalItems, packs } = Astro.props;
+const { packs, totalItems, itemsPerPage } = Astro.props;
 ---
 
 <div class="mt-6 grid grid-cols-2 xs:grid-cols-4 gap-4">
@@ -27,4 +28,4 @@ const { totalItems, packs } = Astro.props;
     ))}
 </div>
 
-<Pagination totalItems={totalItems}, itemsPerPage={12}, maxPages={4}, minPages={3}/>
+<Pagination totalItems={totalItems}, itemsPerPage={itemsPerPage}, maxPages={4}, minPages={3}/>

@@ -133,7 +133,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "254y46htg4r5g356h46",
-        tab: "telegram",
+        tab: "caseros",
         percent: 17,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -157,7 +157,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "gbhnjmui,o79kj5tr",
-        tab: "telegram",
+        tab: "caseros",
         percent: 20,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -165,7 +165,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "w456y46h34t356h",
-        tab: "telegram",
+        tab: "caseros",
         percent: 21,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -181,7 +181,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "23g5647ju57j758j76",
-        tab: "onlyfans",
+        tab: "caseros",
         percent: 23,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -189,7 +189,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "wnryumkt78jrf3",
-        tab: "onlyfans",
+        tab: "caseros",
         percent: 24,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -205,7 +205,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "qrg4t5h67ju8ikjnb2qg",
-        tab: "onlyfans",
+        tab: "caseros",
         percent: 26,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -213,7 +213,7 @@ const packs: Packs[] = [
     },  
     {   
         id: "bnuik79687uytgfq",
-        tab: "onlyfans",
+        tab: "caseros",
         percent: 27,
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -237,22 +237,32 @@ const packs: Packs[] = [
     },
 ];
 
-export const getPacks = async ( limit: number, offset: number, search: string ): Promise<PacksResponse> => {
-    let filteredPacks: Packs[];
+export const getPacks = async ( limit: number, offset: number ): Promise<PacksResponse> => {
+    const resultPack = packs.slice(offset, offset + limit);
+    const resultTotal = packs.length;
 
-    if (search) {
-        const lowerCaseSearch = search.toLowerCase();
-
-        filteredPacks = packs.filter((pack) => {
-            const titleMatch = pack.title.toLowerCase().includes(lowerCaseSearch);
-            const categoriesMatch = pack.categories.some((category) =>
-              category.toLowerCase().includes(lowerCaseSearch)
-            );
-            return titleMatch || categoriesMatch;
-        });
-    } else {
-        filteredPacks = packs;
+    return {
+        status: "success",
+        data: {
+            stats: {
+                total: resultTotal,
+            },
+            trends: trends,
+            packs: resultPack,
+        },
     };
+};
+
+export const getSearchPacks = async ( limit: number, offset: number, search: string ): Promise<PacksResponse> => {
+    const lowerCaseSearch = search.toLowerCase();
+
+    const filteredPacks = packs.filter((pack) => {
+        const titleMatch = pack.title.toLowerCase().includes(lowerCaseSearch);
+        const categoriesMatch = pack.categories.some((category) =>
+            category.toLowerCase().includes(lowerCaseSearch)
+        );
+        return titleMatch || categoriesMatch;
+    });
 
     const resultPack = filteredPacks.slice(offset, offset + limit);
     const resultTotal = filteredPacks.length;
@@ -269,11 +279,11 @@ export const getPacks = async ( limit: number, offset: number, search: string ):
     };
 };
 
-export const getRoutePacks = async ( tab: string ): Promise<PacksResponse> => {
+export const getTabPacks = async ( limit: number, offset: number, tab: string ): Promise<PacksResponse> => {
     const filteredPacks = packs.filter((pack) => pack.tab === tab);
+    const resultPack = filteredPacks.slice(offset, offset + limit);
     const resultTotal = filteredPacks.length;
-    const resultPack = filteredPacks;
-
+    
     return {
         status: "success",
         data: {
