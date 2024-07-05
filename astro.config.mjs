@@ -8,4 +8,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: 'hybrid',
   adapter: vercel(),
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  }
 });

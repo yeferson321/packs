@@ -25,14 +25,13 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-
 	</head>
 	<body>
 
-		<AdBlockDetector/>
-		<Warning/>
+<!-- 		<AdBlockDetector/>
+		<Warning/> -->
 
-		<div class="bg-neutral-950 border-b border-neutral-900">
+		<header class="bg-neutral-900/60 border-b border-neutral-900">
 
 			<div class="max-w-screen-lg mx-auto">
 
@@ -42,7 +41,7 @@ const { title } = Astro.props;
 			
 			</div>
 
-		</div>
+		</header>
 
 		<slot />
 

@@ -45,16 +45,16 @@ const createPageLink = (page: number) => {
 ---
 
 <nav class="mt-12 flex items-center justify-center space-x-3 xs:space-x-6" aria-label="Pagination Navigation">
-    <a href={currentPage > 1 ? createPageLink(currentPage - 1) : ''} class={`p-1 xs:px-6 xs:py-2 rounded-lg bg-amber-500 ${currentPage > 1 ? 'hover:bg-amber-500/90' : 'cursor-not-allowed opacity-90'}`} aria-label="Previous page">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6 stroke-black">
+    <a href={currentPage > 1 ? createPageLink(currentPage - 1) : '/'} class={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage > 1 ? 'bg-amber-500 hover:bg-amber-500/90' : 'cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Previous page">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage > 1 ? 'stroke-black' : 'stroke-neutral-400' }`}>
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
         </svg>
     </a>
-    <ul class="inline-flex items-center space-x-3 text-base xs:text-lg font-medium text-white">
+    <ul class="inline-flex items-center space-x-3 text-base xs:text-xl font-medium text-white">
         {hideLeftContent && (
             <>
                 <li>
-                    <a href={createPageLink(currentPage)} class="flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                    <a href={createPageLink(currentPage)} class="flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
                         1
                     </a>
                 </li>
@@ -63,7 +63,7 @@ const createPageLink = (page: number) => {
         )}
         {pagesToShow.map((page) => (
             <li>
-                <a href={createPageLink(page)} class={`flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 ${ page === currentPage && 'border-2 border-amber-500' }`}>
+                <a href={createPageLink(page)} class={`flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 ${ page === currentPage && 'border-2 border-amber-500' }`}>
                     {page}
                 </a>
             </li>
@@ -72,15 +72,15 @@ const createPageLink = (page: number) => {
             <>
                 <span class="h-7 w-px bg-white" aria-hidden="true" />
                 <li>
-                    <a href={createPageLink(totalPages)} class="flex items-center justify-center w-8 xs:w-10 h-8 xs:h-10 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                    <a href={createPageLink(totalPages)} class="flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
                         {totalPages}
                     </a>
                 </li>
             </>
         )}
     </ul>
-    <a href={currentPage < totalPages ? createPageLink(currentPage + 1) : ''} class={`p-1 xs:px-6 xs:py-2 rounded-lg bg-amber-500 ${currentPage < totalPages ? 'hover:bg-amber-500/90' : 'cursor-not-allowed opacity-90'}`} aria-label="Next page">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6 stroke-black">
+    <a href={currentPage < totalPages ? createPageLink(currentPage + 1) : ''} class={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage < totalPages ? 'bg-amber-500 hover:bg-amber-500/90' : 'cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Next page">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage < totalPages ? 'stroke-black' : 'stroke-neutral-400' }`}>
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
         </svg>
     </a>

@@ -1,5 +1,3 @@
-
-  
 export interface TabItem {
   name: string;
   href: string;
@@ -21,6 +19,7 @@ export interface Packs {
     id: string;
     tab: string;
     percent: number;
+    hot: Date;
     src: string;
     title: string;
     categories: Categories[];
