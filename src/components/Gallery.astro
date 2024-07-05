@@ -28,7 +28,7 @@ console.log(haveTwoMinutesPassed(date)); // Will return true if 2 minutes have p
     {packs.map((pack) => (
       <a href={`/view?view=${pack.id}`}>
         <div class="relative">
-            <Image src={pack.src} inferSize={true} format='' decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={pack.title} />
+            <Image src={pack.src} width="523" height="733" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={pack.title} />
         </div>
         <div class="mt-2 flex items-center justify-between">
             <p class={`py-px px-1 rounded-md text-xs font-medium text-black ${haveTwoMinutesPassed(pack.hot) ? 'bg-blue-500' : 'bg-amber-500'}`}>{haveTwoMinutesPassed(pack.hot) ? 'RECIENTE' : 'CALIENTE HOY'}</p>
