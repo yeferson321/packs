@@ -27,13 +27,6 @@ const { recommended } = Astro.props;
 </div>
 
 <script>
-    document.getElementById("tabRelated").addEventListener("click", () => {
-      openTab('Related');
-    });
-    
-    document.getElementById("tabRecommended").addEventListener("click", () => {
-      openTab('Recommended');
-    });
 
     const tabs = document.querySelectorAll('.tablinks');
     const contents = document.querySelectorAll('.tabcontent');
@@ -46,10 +39,12 @@ const { recommended } = Astro.props;
 
         // Show the selected tab content and add active class to the clicked tab
         const tabName = tab.id.replace('tab', '');
-        document.getElementById(tabName).classList.remove('hidden');
+        const tabContent = document.getElementById(tabName);
+                if (tabContent) {
+                    tabContent.classList.remove('hidden');
+                }
         tab.classList.add('rounded-full', 'bg-neutral-800');
       });
     });
-    
-    document.getElementById('tabRelated').click();
+
 </script>
