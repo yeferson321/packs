@@ -1,0 +1,55 @@
+---
+import type { Packs } from '../utils/types/definitions';
+import Gallery from './Gallery.astro';
+
+interface Props { 
+    recommended: Packs[];
+};
+
+const { recommended } = Astro.props;
+---
+
+<div class="w-full xs:hidden space-y-6">
+
+    <div id="tabs" class="tab hide-scroll flex flex-nowrap text-white text-base">
+        <button id="tabRelated" type="button" class="tablinks px-4 py-3 rounded-full bg-neutral-800">Relacionado</button>
+        <button id="tabRecommended" type="button" class="tablinks px-4 py-3">Recomendado</button>
+    </div>
+  
+    <div id="Related" class="tabcontent">
+      <Gallery packs={recommended} className="grid grid-cols-2 gap-4" />
+    </div>
+  
+    <div id="Recommended" class="tabcontent hidden">
+      <Gallery packs={recommended} className="grid grid-cols-2 gap-4"  />
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("tabRelated").addEventListener("click", () => {
+      openTab('Related');
+    });
+    
+    document.getElementById("tabRecommended").addEventListener("click", () => {
+      openTab('Recommended');
+    });
+
+    const tabs = document.querySelectorAll('.tablinks');
+    const contents = document.querySelectorAll('.tabcontent');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Hide all tab contents and remove active classes
+        contents.forEach(content => content.classList.add('hidden'));
+        tabs.forEach(tab => tab.classList.remove('rounded-full', 'bg-neutral-800'));
+
+        // Show the selected tab content and add active class to the clicked tab
+        const tabName = tab.id.replace('tab', '');
+        document.getElementById(tabName).classList.remove('hidden');
+        tab.classList.add('rounded-full', 'bg-neutral-800');
+      });
+    });
+    
+    document.getElementById('tabRelated').click();
+</script>

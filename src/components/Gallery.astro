@@ -1,47 +1,54 @@
 ---
 import { Image } from 'astro:assets';
 import type { Packs } from '../utils/types/definitions';
+import { IconThumbUp } from './icons';
 import Pagination from './Pagination.astro';
 
 interface Props { 
+    className: string;
     packs: Packs[];
-    totalItems: number;  
-    itemsPerPage: number;
+    totalItems?: number;  
+    itemsPerPage?: number;
 };
 
-const { packs, totalItems, itemsPerPage } = Astro.props;
+const { className, packs, totalItems = 0, itemsPerPage = 0 } = Astro.props;
 
-const haveTwoMinutesPassed = (date: Date): boolean => {
-  const now = new Date();
-  const differenceInMilliseconds = now.getTime() - date.getTime();
-  const twoMinutesInMilliseconds = 2 * 60 * 1000;
+const getStatus = (date: Date): { status: string, background: string } => {
+    const now = new Date();
+    const differenceInMilliseconds = now.getTime() - date.getTime();
+    const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
-  return differenceInMilliseconds > twoMinutesInMilliseconds;
-}
-
-// Example usage:
-const date = new Date("2024-07-04T19:11:00");
-console.log(haveTwoMinutesPassed(date)); // Will return true if 2 minutes have passed since the given date, otherwise false.
+    if (differenceInMilliseconds < 2 * oneDayInMilliseconds) return { status: 'CALIENTE HOY', background: 'bg-amber-500' };
+    if (differenceInMilliseconds < 4 * oneDayInMilliseconds) return { status: 'RECIENTE', background: 'bg-blue-500' };
+    
+    return { status: 'RECOMENDADO', background: 'bg-blue-500'}; 
+};
 ---
 
-<div class="mt-6 grid grid-cols-2 xs:grid-cols-4 gap-4">
-    {packs.map((pack) => (
-      <a href={`/view?view=${pack.id}`}>
-        <div class="relative">
-            <Image src={pack.src} width="523" height="733" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={pack.title} />
-        </div>
-        <div class="mt-2 flex items-center justify-between">
-            <p class={`py-px px-1 rounded-md text-xs font-medium text-black ${haveTwoMinutesPassed(pack.hot) ? 'bg-blue-500' : 'bg-amber-500'}`}>{haveTwoMinutesPassed(pack.hot) ? 'RECIENTE' : 'CALIENTE HOY'}</p>
-            <div class="inline-flex items-center text-sm text-neutral-350">                  
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 me-1 stroke-neutral-300" aria-hidden="true">
-                    <path d="M7.493 18.5c-.425 0-.82-.236-.975-.632A7.48 7.48 0 0 1 6 15.125c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75A.75.75 0 0 1 15 2a2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23h-.777ZM2.331 10.727a11.969 11.969 0 0 0-.831 4.398 12 12 0 0 0 .52 3.507C2.28 19.482 3.105 20 3.994 20H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 0 1-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227Z" />
-                </svg>
-                {pack.percent}%
-            </div>
-        </div>
-        <p class="mt-1 text-base text-neutral-350 hover:text-white">{pack.title}</p>
-      </a>
-    ))}
+<div class={className}>
+    {packs.map((pack) => {
+        const { status, background } = getStatus(new Date(pack.hot));
+        return (
+            <a href={`/view?view=${pack.id}`}>
+                <div class="relative">
+                    <Image src={pack.src} width="523" height="733" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={pack.title} />
+                </div>
+                <div class="mt-2 flex items-center justify-between space-x-1">
+                    <p class={`truncate py-px px-1 rounded-md text-xs font-medium text-black ${background}`}> 
+                        {status}
+                    </p>
+                    <div class="inline-flex items-center text-sm text-neutral-350">                  
+                        <IconThumbUp className="w-3.5 h-3.5 me-1 stroke-neutral-300" />
+                        {pack.percent}%
+                    </div>
+                </div>
+                <p class="mt-1 text-base text-neutral-350 hover:text-white">{pack.title}</p>
+            </a>
+        )
+    })}
 </div>
 
-<Pagination totalItems={totalItems}, itemsPerPage={itemsPerPage}, maxPages={4}, minPages={3}/>
+{(totalItems > itemsPerPage) &&
+    <Pagination totalItems={totalItems || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
+}
+

@@ -1,4 +1,4 @@
-import type { TabItem, Trends } from "../types/definitions";
+import type { Trends, TabItem } from '../types/definitions';
 
 export const trendingSearches: Trends[] = [
     { trend: "jocelyn macias", href: "jocelyn macias" },

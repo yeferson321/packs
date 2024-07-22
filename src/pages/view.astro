@@ -1,0 +1,196 @@
+---
+export const prerender = false;
+import { IconGlobe } from '../components/icons';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { getViewPack } from '../utils/feath';
+import Gallery from '../components/Gallery.astro';
+import TabsView from '../components/TabsView.astro';
+import type { Packs } from '../utils/types/definitions';
+
+const view: string = Astro.url.searchParams.get("view") || "";
+
+type Categories = 'Caseros' | 'Maduras' | 'Teen' | 'Jovencitas' | 'Lesbianas' | 'Trios' | 'Japonesas' | 'Aficionado' | 'Anal' | 'Babe' | 'Bisexual' | 'Camara web' | 'Celebridades' | 'Coreanas' | 'Cornudos' | 'Cosplay' | 'Creampie' | 'Culos' | 'Culos grandes' | 'Escuela' | 'Eyaculaciones' | 'Padrastro' | 'Fetiches' | 'Fiestas' | 'Gordas' | 'Gorda buena' | 'Interracial' | 'Juguetes' | 'Latina' | 'Mamadas' | 'Masajes' | 'Masturbacion' | 'Milf' | 'Morenas' | 'Tatuadas' | 'Negras' | 'Niñeras' | 'Orgasmo' | 'Orgias' | 'Pajas' | 'Pelirojas' | 'Pies' | 'Publico' | 'Real' | 'Sexo duro' | 'Solitaria' | 'Tetas grandes' | 'Tetas pequeñas' | 'Colegialas' | 'Flaquitas' | 'Mexicanas' | 'Colombianas' | 'Brasileras';
+
+export interface Pack {
+    id: string;
+    tab: string;
+    percent: number;
+    hot: Date;
+    src: string;
+    title: string;
+    categories: Categories[];
+};
+
+export interface PackResponse {
+    status: string;
+    data: {
+        pack: Pack | undefined;
+        recommended: Packs[]
+    };
+};
+
+const { data }: PackResponse = await getViewPack(view);
+---
+
+<Layout meta={`Mira ${data.pack?.title} en OnlyPacks. Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos.`} title={`${data.pack?.title} | OnlyPacks` }>
+
+	<main class="max-w-screen-lg mx-auto px-4 py-8">
+
+        { data.pack ? 
+
+            <div class="grid xs:grid-cols-8 gap-y-10 xs:gap-x-16">
+
+                <div class="xs:col-span-5 xs:space-x-6">
+                
+                    <div class="w-full space-y-4">
+                    
+                        <div class="w-full flex justify-center">
+                            <Image src={data.pack?.src} width="360" height="524" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={data.pack?.title} />
+                        </div>
+                    
+                        <div class="inline-flex items-center">
+                            <h1 class="text-white text-lg font-semibold">{data.pack?.title}</h1>
+                            <IconGlobe className="flex-none w-6 h-6 ms-3 stroke-white"/>        
+                        </div>
+                    
+                        <div class="flex justify-around">
+                        
+                            <button id="like-button" type="button" class="flex flex-col items-center text-xs text-neutral-350 transition ease-in-out active:scale-125 duration-300">
+                                <svg id="like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350">
+                                    <path d="M7.493 18.5c-.425 0-.82-.236-.975-.632A7.48 7.48 0 0 1 6 15.125c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75A.75.75 0 0 1 15 2a2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23h-.777ZM2.331 10.727a11.969 11.969 0 0 0-.831 4.398 12 12 0 0 0 .52 3.507C2.28 19.482 3.105 20 3.994 20H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 0 1-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227Z" />
+                                </svg>
+                                <span class="mt-1">{data.pack?.percent}%</span>             
+                            </button>
+                        
+                            <button id="love-button" type="button" class="flex flex-col items-center text-xs text-neutral-350 transition ease-in-out active:scale-125 duration-300">
+                                <svg id="love-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350">
+                                    <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                                </svg>  
+                                <span class="mt-1">Favorito</span>                      
+                            </button>
+                        
+                            <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+                                    <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="mt-1">Descargar</span>                     
+                            </button>
+                        
+                            <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+                                    <path fill-rule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clip-rule="evenodd" />
+                                </svg>   
+                                <span class="mt-1">Compartir</span>   
+                            </button>
+                        
+                            <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+                                    <path fill-rule="evenodd" d="M3 2.25a.75.75 0 0 1 .75.75v.54l1.838-.46a9.75 9.75 0 0 1 6.725.738l.108.054A8.25 8.25 0 0 0 18 4.524l3.11-.732a.75.75 0 0 1 .917.81 47.784 47.784 0 0 0 .005 10.337.75.75 0 0 1-.574.812l-3.114.733a9.75 9.75 0 0 1-6.594-.77l-.108-.054a8.25 8.25 0 0 0-5.69-.625l-2.202.55V21a.75.75 0 0 1-1.5 0V3A.75.75 0 0 1 3 2.25Z" clip-rule="evenodd" />
+                                </svg> 
+                                <span class="mt-1">Denunciar</span>                     
+                            </button>
+                        
+                        </div>
+                    
+                    
+                        <div class="pt-3 pb-4 space-y-2 border-y border-neutral-800">
+                            <p class="text-base text-neutral-400">Categorias</p>
+                            <ul class="flex flex-wrap gap-2 xs:gap-3 text-sm text-white">
+                                {data.pack?.categories.map((categorie) => (
+                                    <li>
+                                        <a href={`search?search=${categorie}`} class="block py-2 px-3.5 rounded-lg bg-neutral-900 hover:bg-neutral-800">
+                                            {categorie}                           
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    
+                    </div>
+                
+                    
+                </div>
+    
+           
+
+                <div class="max-xs:hidden space-y-3 col-start-6 col-end-9">
+                    <h2 class="text-white text-base font-semibold">Packs calientes relacionados</h1>
+                    <Gallery packs={data.recommended} className="grid grid-cols-2 gap-4" />
+                </div>
+
+                <div class="xs:col-start-1 xs:col-end-9 overflow-x-auto touch-pan-x hide-scroll">
+                    <script type="text/javascript">
+                    	atOptions = {
+                    		'key' : '3aa885736775fa2a26fe037133fd8fe0',
+                    		'format' : 'iframe',
+                    		'height' : 90,
+                    		'width' : 728,
+                    	};
+                    </script>
+                    <script type="text/javascript" src="//bashfortitudeaffability.com/3aa885736775fa2a26fe037133fd8fe0/invoke.js"></script>
+                </div>
+
+                <div class="max-xs:hidden space-y-3 col-start-1 col-end-9">
+                    <h2 class="text-white text-base font-semibold">Packs calientes recomendados</h1>
+                    <Gallery packs={data.recommended} className="grid grid-cols-3 lg:grid-cols-4 gap-4" />
+                </div>
+ 
+                <TabsView recommended={data.recommended}/>
+                
+            </div>
+
+            : 
+            
+            'no found'
+
+        }
+	</main>
+</Layout>
+
+<script define:vars={{ packId: data.pack?.id }}>
+    const likeButton = document.getElementById('like-button');
+    const loveButton = document.getElementById('love-button');
+    const likeIcon = document.getElementById('like-icon');
+    const loveIcon = document.getElementById('love-icon');
+
+    const updateStorePacks = (packId) => {
+        const storedPacks = JSON.parse(localStorage.getItem('storePacks')) || []
+        
+ /*        let updatedPacks = [...storePacks];
+ */
+        var updatedPacks = storedPacks
+
+        if (storedPacks.includes(packId)) {
+            // Eliminar el packId si ya existe
+            updatedPacks = updatedPacks.filter(id => id !== packId);
+        } else {
+            // Agregar el packId si no existe
+            updatedPacks.push(packId);
+        }
+
+        localStorage.setItem('storePacks', JSON.stringify(updatedPacks));
+    };
+
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('text-neutral-350');
+        likeButton.classList.toggle('text-blue-500');
+        likeIcon.classList.toggle('fill-neutral-350');
+        likeIcon.classList.toggle('fill-blue-500');
+    });
+
+    loveButton.addEventListener('click', () => {
+        loveButton.classList.toggle('text-neutral-350');
+        loveButton.classList.toggle('text-amber-500');
+        loveIcon.classList.toggle('fill-neutral-350');
+        loveIcon.classList.toggle('fill-amber-500');
+        
+    /*     if (localStorage.getItem('id')) {
+            localStorage.removeItem('id');
+        } else {
+            localStorage.setItem('id', id);
+        }; */
+
+        updateStorePacks(packId)
+    });
+</script>

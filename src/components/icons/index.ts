@@ -1,0 +1,13 @@
+export { default as IconOnlypacks } from './IconOnlypacks.astro';
+export { default as IconLens } from './IconLens.astro';
+export { default as IconHeart } from './IconHeart.astro';
+export { default as IconStar } from './IconStar.astro';
+export { default as IconHome } from './IconHome.astro';
+export { default as IconCaseros } from './IconCaseros.astro';
+export { default as IconOnlyfans } from './IconOnlyfans.astro';
+export { default as IconTelegram } from './IconTelegram.astro';
+export { default as IconGlobe } from './IconGlobe.astro';
+export { default as IconChevronLeft } from './IconChevronLeft.astro';
+export { default as IconChevronRight } from './IconChevronRight.astro';
+export { default as IconThumbUp } from './IconThumbUp.astro'
+export { default as IconTumbDown } from './IconTumbDown.astro'

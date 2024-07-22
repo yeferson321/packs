@@ -3,6 +3,7 @@ export const prerender = false;
 import type { PacksResponse } from '../utils/types/definitions';
 import { getPacks } from '../utils/feath';
 import Layout from '../layouts/Layout.astro';
+import Message from '../components/Message.astro';
 import Trends from '../components/Trends.astro';
 import Gallery from '../components/Gallery.astro';
 
@@ -13,9 +14,10 @@ const offset: number = (page - 1) * itemsPerPage;
 const { data }: PacksResponse = await getPacks(itemsPerPage, offset);
 ---
 
-<Layout title="Packs">
+<Layout meta="Packs porno gratis sin acortadores, aquí en OnlyPacks. Descubre la creciente colección de packs caseros y de famosas. Los más relevantes de alta calidad. ¡No hay otro canal de packs más popular y que presente más packs calientes que OnlyPacks! Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos." title="Packs Calientes de Sexo Gratis | OnlyPacks">
 	<main class="max-w-screen-lg mx-auto p-4">
+		<Message message={`Packs calientes a nivel internacional`}/>
 		<Trends trends={data.trends}/>
-		<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage} />
+		<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
 	</main>
 </Layout>

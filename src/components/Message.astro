@@ -1,0 +1,14 @@
+---
+import IconGlobe from './icons/IconGlobe.astro';
+
+interface Props {   
+    message: string;
+};
+
+const { message } = Astro.props;
+---
+
+<div class="inline-flex items-center">
+    <h1 class="text-white text-lg font-semibold">{message}</h1>
+    <IconGlobe className="flex-none w-6 h-6 ms-3 stroke-blue-500"/>        
+</div>

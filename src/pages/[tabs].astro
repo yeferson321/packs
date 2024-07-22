@@ -1,11 +1,16 @@
 ---
 export const prerender = false;
-import Layout from '../layouts/Layout.astro';
-import Gallery from '../components/Gallery.astro';
-import { getTabPacks } from '../utils/feath';
 import type { PacksResponse } from '../utils/types/definitions';
+import { tabElements } from '../utils/data/data'
+import { getTabPacks } from '../utils/feath';
+import Layout from '../layouts/Layout.astro';
+import Message from '../components/Message.astro';
+import Gallery from '../components/Gallery.astro';
 
 const { tabs = '' } = Astro.params;
+const route = tabElements.find((tab) => tab.name.toLowerCase() === tabs);
+if (!route) return Astro.redirect("/404");
+
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
@@ -13,8 +18,9 @@ const offset: number = (page - 1) * itemsPerPage;
 const { data }: PacksResponse = await getTabPacks(itemsPerPage, offset, tabs);
 ---
 
-<Layout title={`Packs ${tabs}`}>
+<Layout meta=`Packs ${tabs} porno gratis sin acortadores en OnlyPacks. Mira los mejores packs ${tabs} de sexo nuevos o recientes gratis en OnlyPacks.` title={`Packs ${tabs} de Sexo nuevos o recientes | OnlyPacks`}>
 	<main class="max-w-screen-lg mx-auto p-4">
-		<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage}/>
+		<Message message={`Packs ${tabs} a nivel internacional`}/>
+		<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
 	</main>
 </Layout>
