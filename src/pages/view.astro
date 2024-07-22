@@ -148,7 +148,7 @@ const { data }: PackResponse = await getViewPack(view);
 	</main>
 </Layout>
 
-<script define:vars={{ packId: data.pack?.id }}>
+<script is:inline define:vars={{ packId: data.pack?.id }}>
     const likeButton = document.getElementById('like-button');
     const loveButton = document.getElementById('love-button');
     const likeIcon = document.getElementById('like-icon');

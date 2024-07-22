@@ -7,11 +7,11 @@ aleatorio = Math.random().toString(36).substring(2, 13);
   AdBlock está activo. Por favor desactívalo para continuar.
 </div>
 
-<script define:vars={{ aleatorio }}>
+<script is:inline define:vars={{ aleatorio }}>
   const adblockText = document.getElementById(aleatorio);
 
   const checkAdBlockWithScripts = () => {
-    var scriptUrls = ["https://cdn.ampproject.org/v0/amp-ad-0.1.js", "https://bashfortitudeaffability.com/d42aed506a2fb4c4a0ac003849b87f67/invoke.js"];
+    var scriptUrls = ["https://bashfortitudeaffability.com/3aa885736775fa2a26fe037133fd8fe0/invoke.js"];
 
     scriptUrls.forEach(function (url) {
       var script = document.createElement("script");
