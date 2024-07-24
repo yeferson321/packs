@@ -4,7 +4,7 @@ import { IconGlobe } from '../components/icons';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { getViewPack } from '../utils/feath';
-import Gallery from '../components/Gallery.astro';
+import Gallery from '../components/Gallery'
 import TabsView from '../components/TabsView.astro';
 import type { Packs } from '../utils/types/definitions';
 
@@ -116,7 +116,7 @@ const { data }: PackResponse = await getViewPack(view);
 
                 <div class="max-xs:hidden space-y-3 col-start-6 col-end-9">
                     <h2 class="text-white text-base font-semibold">Packs calientes relacionados</h1>
-                    <Gallery packs={data.recommended} className="grid grid-cols-2 gap-4" />
+                    <Gallery client:only="react" packs={data.recommended} className="grid grid-cols-2 gap-4" />
                 </div>
 
                {/*  <div class="xs:col-start-1 xs:col-end-9 overflow-x-auto touch-pan-x hide-scroll">
@@ -133,7 +133,7 @@ const { data }: PackResponse = await getViewPack(view);
 
                 <div class="max-xs:hidden space-y-3 col-start-1 col-end-9">
                     <h2 class="text-white text-base font-semibold">Packs calientes recomendados</h1>
-                    <Gallery packs={data.recommended} className="grid grid-cols-3 lg:grid-cols-4 gap-4" />
+                    <Gallery client:only="react" packs={data.recommended} className="grid grid-cols-3 lg:grid-cols-4 gap-4" />
                 </div>
  
                 <TabsView recommended={data.recommended}/>

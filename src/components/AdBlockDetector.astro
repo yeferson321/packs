@@ -1,14 +1,14 @@
 ---
-var aleatorio: string | null | undefined;
-aleatorio = Math.random().toString(36).substring(2, 13);
+var randomId: string | null | undefined;
+randomId = Math.random().toString(36).substring(2, 13);
 ---
 
-<div id={aleatorio} class="hidden text-red-300 text-base">
+<div id={randomId} class="hidden text-red-300 text-base">
   AdBlock está activo. Por favor desactívalo para continuar.
 </div>
 
-<script is:inline define:vars={{ aleatorio }}>
-  const adblockText = document.getElementById(aleatorio);
+<script is:inline define:vars={{ randomId }}>
+  const adblockText = document.getElementById(randomId);
 
   const checkAdBlockWithScripts = () => {
     var scriptUrls = ["https://bashfortitudeaffability.com/3aa885736775fa2a26fe037133fd8fe0/invoke.js"];

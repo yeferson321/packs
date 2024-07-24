@@ -1,6 +1,6 @@
 ---
 import type { Packs } from '../utils/types/definitions';
-import Gallery from './Gallery.astro';
+import Gallery from './Gallery'
 
 interface Props { 
     recommended: Packs[];
@@ -17,11 +17,11 @@ const { recommended } = Astro.props;
     </div>
   
     <div id="Related" class="tabcontent">
-      <Gallery packs={recommended} className="grid grid-cols-2 gap-4" />
+      <Gallery client:only="react" packs={recommended} className="grid grid-cols-2 gap-4" />
     </div>
   
     <div id="Recommended" class="tabcontent hidden">
-      <Gallery packs={recommended} className="grid grid-cols-2 gap-4"  />
+      <Gallery client:only="react" packs={recommended} className="grid grid-cols-2 gap-4"  />
     </div>
 
 </div>

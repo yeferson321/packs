@@ -5,7 +5,8 @@ import { tabElements } from '../utils/data/data'
 import { getTabPacks } from '../utils/feath';
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
-import Gallery from '../components/Gallery.astro';
+import Gallery from '../components/Gallery'
+import Pagination from '../components/Pagination'
 
 const { tabs = '' } = Astro.params;
 const route = tabElements.find((tab) => tab.name.toLowerCase() === tabs);
@@ -21,6 +22,9 @@ const { data }: PacksResponse = await getTabPacks(itemsPerPage, offset, tabs);
 <Layout meta=`Packs ${tabs} porno gratis sin acortadores en OnlyPacks. Mira los mejores packs ${tabs} de sexo nuevos o recientes gratis en OnlyPacks.` title={`Packs ${tabs} de Sexo nuevos o recientes | OnlyPacks`}>
 	<main class="max-w-screen-lg mx-auto p-4">
 		<Message message={`Packs ${tabs} a nivel internacional`}/>
-		<Gallery packs={data.packs} totalItems={data.stats.total} itemsPerPage={itemsPerPage} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+		<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+		{(data.stats.total > itemsPerPage) &&
+    		<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
+		}
 	</main>
 </Layout>

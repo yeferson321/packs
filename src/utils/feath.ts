@@ -482,7 +482,7 @@ const packs: Packs[] = [
     },
 ];
 
-export const getPacks = async (limit: number, offset: number): Promise<PacksResponse> => {
+export const getPacks = (limit: number, offset: number): PacksResponse => {
     const resultPack = packs.slice(offset, offset + limit);
     const resultTotal = packs.length;
 
@@ -631,4 +631,12 @@ export const getStorePacks = async (limit: number, offset: number, storePacks: s
             packs: resultPack,
         },
     };
+};
+
+
+
+export let hola:string[] = ["holaaa"]
+
+export const cambiar = (mensaje: string[]) => {
+	hola = mensaje
 };
