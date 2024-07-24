@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import type { RandomPacksResponse } from '../../utils/types/definitions';
-
 import { getStorePacks } from '../../utils/feath';
 import Gallery from '../Gallery';
 
@@ -12,11 +11,9 @@ interface Props {
 };
 
 export const Favorite = ({itemsPerPage, offset, message, noFavorites}: Props) => {
-	const [data, setData] = useState<RandomPacksResponse | []>([]);
+	const [data, setData] = useState<RandomPacksResponse | null>(null);
 	const storedPacksString = window.localStorage.getItem('storePacks');
 	const storedPacks: string[] = storedPacksString ? JSON.parse(storedPacksString) : [];
-
-/* 	console.log(storedPacks) */
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -26,14 +23,15 @@ export const Favorite = ({itemsPerPage, offset, message, noFavorites}: Props) =>
 		fetchData();
 
 		
-	},[itemsPerPage, offset, storedPacks]);
+	},[offset]);
 
-/* 	console.log("data", data.data) */
+	if (!data) {
+        return null; // O puedes mostrar un mensaje de carga aquí
+    }
 
   	return (
 
     	storedPacks.length ? (
-		
     	  	<main className="max-w-screen-lg mx-auto p-4">
 				{message}
 				<div className="my-3">
@@ -45,7 +43,7 @@ export const Favorite = ({itemsPerPage, offset, message, noFavorites}: Props) =>
 				<h2 className="text-white text-base">
 				  	Los packs que marques como favoritos podrían desaparecer si navegas en modo incógnito.
 				</h2>
-				{/* <Gallery packs={data.data.packs} totalItems={data.data.stats.total} itemsPerPage={itemsPerPage} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4"/> */}
+				<Gallery packs={data.data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4"/>
 			</main>
 
     	) : (

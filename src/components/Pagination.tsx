@@ -1,6 +1,6 @@
 import React from 'react';
-import { IconChevronLeft, IconChevronRight } from './icons';
-
+/* import { IconChevronLeft, IconChevronRight } from './icons';
+ */
 interface Props {   
     totalItems: number;
     itemsPerPage: number;
