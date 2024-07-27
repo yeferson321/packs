@@ -1,4 +1,4 @@
-export { default as IconOnlypacks } from './IconOnlypacks.astro';
+export { default as IconXmark } from './IconXmark.astro';
 export { default as IconLens } from './IconLens.astro';
 export { default as IconHeart } from './IconHeart.astro';
 export { default as IconStar } from './IconStar.astro';

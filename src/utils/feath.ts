@@ -2,7 +2,7 @@ import type { Packs, PacksResponse, RandomPacksResponse } from "./types/definiti
 
 const trends = ['sophie dee', 'sophie dee', 'sophie dee', 'jovencita colombiana', 'kathrin 3', 'melisa gutierrez', 'canela skin', 'krissy lynn', 'blake blossom'];
 
-const packs: Packs[] = [
+export const packs: Packs[] = [
     {
         id: "234fwdf436y35tg",
         tab: "caseros",
@@ -631,12 +631,4 @@ export const getStorePacks = async (limit: number, offset: number, storePacks: s
             packs: resultPack,
         },
     };
-};
-
-
-
-export let hola:string[] = ["holaaa"]
-
-export const cambiar = (mensaje: string[]) => {
-	hola = mensaje
 };

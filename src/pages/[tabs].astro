@@ -5,8 +5,8 @@ import { tabElements } from '../utils/data/data'
 import { getTabPacks } from '../utils/feath';
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
-import Gallery from '../components/Gallery'
-import Pagination from '../components/Pagination'
+import Gallery from '../components/react/Gallery'
+import Pagination from '../components/react/Pagination'
 
 const { tabs = '' } = Astro.params;
 const route = tabElements.find((tab) => tab.name.toLowerCase() === tabs);

@@ -4,8 +4,8 @@ import type { PacksResponse } from '../utils/types/definitions';
 import { getSearchPacks } from '../utils/feath';
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
-import Gallery from '../components/Gallery'
-import Pagination from '../components/Pagination'
+import Gallery from '../components/react/Gallery'
+import Pagination from '../components/react/Pagination'
 import RandomPacks from '../components/RandomPacks.astro';
 
 const search: string = Astro.url.searchParams.get("search") || "";

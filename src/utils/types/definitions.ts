@@ -1,3 +1,5 @@
+
+
 export interface TabItem {
   name: string;
   href: string;
@@ -30,6 +32,7 @@ export interface PacksResponse {
     data: {
         stats: {
             total: number;
+            totalPacks: number;
         };
         trends: string[];
         packs: Packs[];
@@ -37,6 +40,16 @@ export interface PacksResponse {
 };
 
 export interface RandomPacksResponse {
+    status: string;
+    data: {
+        stats: {
+            total: number;
+        };
+        packs: Packs[];
+    };
+};
+
+export interface FavoritesPacksResponse {
     status: string;
     data: {
         stats: {

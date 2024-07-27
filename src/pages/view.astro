@@ -1,12 +1,13 @@
 ---
 export const prerender = false;
-import { IconGlobe } from '../components/icons';
+
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { getViewPack } from '../utils/feath';
-import Gallery from '../components/Gallery'
+import Gallery from '../components/react/Gallery'
 import TabsView from '../components/TabsView.astro';
 import type { Packs } from '../utils/types/definitions';
+import { IconGlobe } from '../components/icons/astro/outline';
 
 const view: string = Astro.url.searchParams.get("view") || "";
 
@@ -155,13 +156,13 @@ const { data }: PackResponse = await getViewPack(view);
     const loveIcon = document.getElementById('love-icon');
 
     const updateStorePacks = (packId) => {
-        const storedPacks = JSON.parse(localStorage.getItem('storePacks')) || []
+        const favoritePacks = JSON.parse(localStorage.getItem('favoritePacks')) || []
         
  /*        let updatedPacks = [...storePacks];
  */
-        var updatedPacks = storedPacks
+        var updatedPacks = favoritePacks
 
-        if (storedPacks.includes(packId)) {
+        if (favoritePacks.includes(packId)) {
             // Eliminar el packId si ya existe
             updatedPacks = updatedPacks.filter(id => id !== packId);
         } else {
@@ -169,7 +170,7 @@ const { data }: PackResponse = await getViewPack(view);
             updatedPacks.push(packId);
         }
 
-        localStorage.setItem('storePacks', JSON.stringify(updatedPacks));
+        localStorage.setItem('favoritePacks', JSON.stringify(updatedPacks));
     };
 
     likeButton.addEventListener('click', () => {

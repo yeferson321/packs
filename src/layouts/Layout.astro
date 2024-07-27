@@ -1,8 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
-import AdBlockDetector from '../components/AdBlockDetector.astro';
-
+/* import AdBlockDetector from '../components/AdBlockDetector.astro';
+ */
+import Warning from '../components/Warning.astro';
 import Navbar from '../components/Navbar.astro';
 import Tabs from '../components/Tabs.astro';
 
@@ -10,6 +11,7 @@ import Tabs from '../components/Tabs.astro';
 
 import AdsFooter from '../components/AdsFooter.astro';
 import Footer from '../components/Footer.astro';
+
 
 interface Props {
 	meta: string;
@@ -33,9 +35,10 @@ const { meta, title } = Astro.props;
  		<ViewTransitions />
 	</head>
 	<body>
-		<AdBlockDetector/>
-<!--
-		<Warning/> -->
+<!-- 
+		<AdBlockDetector /> -->
+		
+		<Warning/>
 
 		<header class="bg-neutral-900/60 border-b border-neutral-900">
 

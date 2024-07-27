@@ -7,7 +7,7 @@ randomId = Math.random().toString(36).substring(2, 13);
   AdBlock está activo. Por favor desactívalo para continuar.
 </div>
 
-<script is:inline define:vars={{ randomId }}>
+<script is:inline data-astro-rerun define:vars={{ randomId }}>
   const adblockText = document.getElementById(randomId);
 
   const checkAdBlockWithScripts = () => {
@@ -31,8 +31,8 @@ randomId = Math.random().toString(36).substring(2, 13);
       document.head.appendChild(script);
     });
   };
-
-  window.onload = () => {
+  
+  document.addEventListener('astro:page-load', () => {
     checkAdBlockWithScripts();
-  };
+  });
 </script>

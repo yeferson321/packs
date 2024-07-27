@@ -1,6 +1,5 @@
-import React from 'react';
-/* import { IconChevronLeft, IconChevronRight } from './icons';
- */
+import { IconChevronLeft, IconChevronRight } from '../icons/react/outline';
+
 interface Props {   
     totalItems: number;
     itemsPerPage: number;
@@ -8,7 +7,7 @@ interface Props {
     minPages: number;
 };
 
-const Pagination: React.FC<Props> = ({ totalItems, itemsPerPage, maxPages, minPages }) => {
+const Pagination = ({ totalItems, itemsPerPage, maxPages, minPages }: Props) => {
     const currentPage = parseInt(new URLSearchParams(window.location.search).get('page') || '1');
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -44,7 +43,7 @@ const Pagination: React.FC<Props> = ({ totalItems, itemsPerPage, maxPages, minPa
     return (
         <nav className="mt-12 flex items-center justify-center space-x-3 xs:space-x-6" aria-label="Pagination Navigation">
             <a href={currentPage > 1 ? createPageLink(currentPage - 1) : '#'} className={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage > 1 ? 'bg-amber-500 hover:bg-amber-500/90' : 'cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Previous page">
-               {/*  <IconChevronLeft strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage > 1 ? 'stroke-black' : 'stroke-neutral-400'}`} /> */}
+                <IconChevronLeft strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage > 1 ? 'stroke-black' : 'stroke-neutral-400'}`} />
             </a>
             <ul className="inline-flex items-center space-x-3 text-base xs:text-xl font-medium text-white">
                 {hideLeftContent && (
@@ -76,7 +75,7 @@ const Pagination: React.FC<Props> = ({ totalItems, itemsPerPage, maxPages, minPa
                 )}
             </ul>
             <a href={currentPage < totalPages ? createPageLink(currentPage + 1) : '#'} className={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage < totalPages ? 'bg-amber-500 hover:bg-amber-500/90' : 'cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Next page">
-{/*                 <IconChevronRight strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage < totalPages ? 'stroke-black' : 'stroke-neutral-400'}`} /> */}
+                <IconChevronRight strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage < totalPages ? 'stroke-black' : 'stroke-neutral-400'}`} />
             </a>
         </nav>
     );
