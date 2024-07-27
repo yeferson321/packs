@@ -1,4 +1,4 @@
-
+export const prerender = false;
 import type { APIRoute } from "astro";
 import { packs } from "../../utils/data/data";
 
