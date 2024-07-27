@@ -15,9 +15,9 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
     const [data, setData] = useState<FavoritesPacksResponse | undefined>(undefined);
 	const favoritePacks: string[] = JSON.parse(window.localStorage.getItem('favoritePacks') || "[]");
 	const validFavorite: string[] = favoritePacks.filter(id => id !== '');
-
+/* 
 	console.log(`/api/test-post?limit=${itemsPerPage}&offset=${offset}&favorites=${favoritePacks}`)
-
+ */
 	const removeFavorites = () => {
 		window.localStorage.removeItem('favoritePacks'); 
 		setNoFound(false);
