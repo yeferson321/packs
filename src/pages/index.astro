@@ -1,15 +1,13 @@
 ---
-export const prerender = false;
+
 /* import type { PacksResponse } from '../utils/types/definitions'; */
-/* import { getPacks } from '../utils/feath'; */
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
 /* import Trends from '../components/Trends.astro'; */
-import Gallery from '../components/react/Gallery'
 import Pagination from '../components/react/Pagination'
 import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro';
+import Gallery from '../components/Gallery.astro';
 
-/* const searchParams = Astro.url.searchParams; */
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
@@ -22,7 +20,7 @@ const { data } = await response.json();
 	<main class="max-w-screen-lg mx-auto p-4">
 		<Message message={`Packs calientes a nivel internacional`}/>
 		<!-- <Trends trends={data.trends}/> -->
-		<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" >
+		<Gallery server:defer packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" >
 			<GallerySkeleton slot="fallback" className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" itemCount={itemsPerPage}/>
 		</Gallery>
 		{(data.stats.total > itemsPerPage) &&

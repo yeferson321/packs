@@ -9,5 +9,3 @@ export { default as IconTelegram } from './IconTelegram.astro';
 export { default as IconGlobe } from './IconGlobe.astro';
 export { default as IconChevronLeft } from './IconChevronLeft.astro';
 export { default as IconChevronRight } from './IconChevronRight.astro';
-export { default as IconThumbUp } from './IconThumbUp.astro'
-export { default as IconTumbDown } from './IconTumbDown.astro'

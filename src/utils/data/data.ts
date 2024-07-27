@@ -1,5 +1,7 @@
 import type { Trends, TabItem, Packs } from '../types/definitions';
 
+export const trends = ['sophie dee', 'sophie dee', 'sophie dee', 'jovencita colombiana', 'kathrin 3', 'melisa gutierrez', 'canela skin', 'krissy lynn', 'blake blossom'];
+
 export const trendingSearches: Trends[] = [
     { trend: "jocelyn macias", href: "jocelyn macias" },
     { trend: "karen la colombiana", href: "karen la colombiana" },

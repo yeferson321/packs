@@ -14,9 +14,8 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
     const [noFound, setNoFound] = useState<boolean>();
     const [data, setData] = useState<FavoritesPacksResponse | undefined>(undefined);
 	const favoritePacks: string[] = JSON.parse(window.localStorage.getItem('favoritePacks') || "[]");
-	/* const validPacks: string[] = favoritePacks.filter(pack => pack !== '') */
-/* 	const validFavorite: string[] = favoritePacks.filter(id => id !== '')
- */
+	const validFavorite: string[] = favoritePacks.filter(id => id !== '');
+
 	console.log(`/api/test-post?limit=${itemsPerPage}&offset=${offset}&favorites=${favoritePacks}`)
 
 	const removeFavorites = () => {
@@ -24,12 +23,10 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 		setNoFound(false);
 	};
 
-/* 	console.log(favoritePacks) */
-
 	useEffect(() => {
-		/*if (validPacks.length) {
+		if (validFavorite.length) {
 			 const getData = async () => {
-				const res = await fetch(`/api/test-post?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validPacks)}`);
+				const res = await fetch(`/api/test-post?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validFavorite)}`);
 
 				// This will activate the closest `error.js` Error Boundary
 				if (!res.ok) throw new Error('Failed to fetch data');
@@ -48,7 +45,7 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 			getData(); 
 		} else {
 			setNoFound(false);
-		};*/
+		};
 	}, [offset]);
 
 	if (noFound === undefined) {

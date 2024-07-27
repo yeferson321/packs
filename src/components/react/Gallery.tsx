@@ -1,4 +1,3 @@
-
 import type { Packs } from '../../utils/types/definitions';
 import { IconThumbUp } from '../icons/react/solid';
 
