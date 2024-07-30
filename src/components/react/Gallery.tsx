@@ -25,7 +25,7 @@ const Gallery = ({ className, packs }: Props) => {
                 return (
                     <a key={pack.id} href={`/view?view=${pack.id}`}>
                         <div className="relative w-full aspect-[9/13]">
-                            <img src={pack.src} quality="max" loading="lazy"  className="absolute inset-0 w-full h-full object-cover rounded-lg" alt={pack.title} />
+                            <img src={pack.src} loading="lazy" className="absolute inset-0 w-full h-full object-cover rounded-lg" alt={pack.title} />
                         </div>
                         <div className="mt-2 flex items-center justify-between space-x-1">
                             <p className={`truncate py-px px-1 rounded-md text-xs font-medium text-black ${background}`}>
