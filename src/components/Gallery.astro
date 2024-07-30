@@ -28,7 +28,6 @@ const getStatus = (date: Date): { status: string, background: string } => {
         return (
             <a href={`/view?view=${pack.id}`}>
                 <div class="relative w-full aspect-[9/13]">
-
                     <Image src={pack.src} inferSize quality="max" loading="lazy" class="absolute inset-0 w-full h-full object-cover rounded-lg" alt={pack.title}/>
                 </div>
                 <div class="mt-2 flex items-center justify-between space-x-1">
