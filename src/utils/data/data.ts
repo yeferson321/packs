@@ -1,6 +1,5 @@
 import type { Trends, TabItem, Packs } from '../types/definitions';
 
-export const trends = ['sophie dee', 'sophie dee', 'sophie dee', 'jovencita colombiana', 'kathrin 3', 'melisa gutierrez', 'canela skin', 'krissy lynn', 'blake blossom'];
 
 export const trendingSearches: Trends[] = [
     { trend: "jocelyn macias", href: "jocelyn macias" },
@@ -500,3 +499,5 @@ export const packs: Packs[] = [
         categories: ["Anal", "Publico", "Orgias", "Pelirojas", "Pelirojas", "Publico", "Orgias", "Pelirojas", "Pelirojas"],
     },
 ];
+
+export const trends: string[] = ['sophie dee', 'sophie dee', 'sophie dee', 'jovencita colombiana', 'kathrin 3', 'melisa gutierrez', 'canela skin', 'krissy lynn', 'blake blossom'];

@@ -1,11 +1,11 @@
 ---
 import type { IconsProps } from '../utils/types/definitions';
 import { tabElements } from '../utils/data/data';
-import { IconHome, IconCaseros, IconOnlyfans, IconTelegram } from './icons/astro/outline';
+import { IconHome, IconCaseros, IconOnlyfans, IconTelegram } from './icons/react/outline';
 
 const { pathname } = Astro.url;
 
-const iconMap: Record<string, ({ strokeWidth, className }: IconsProps) => Element> =  {
+const iconMap: Record<string, ({ strokeWidth, className }: IconsProps) => JSX.Element> =  {
     INICIO: IconHome,
     CASEROS: IconCaseros,
     ONLYFANS: IconOnlyfans,
@@ -20,7 +20,7 @@ const iconMap: Record<string, ({ strokeWidth, className }: IconsProps) => Elemen
             return (
                 <li class={`w-full ${ pathname === tab.href && "border-b-2 border-b-amber-500" }`}>
                     <a href={tab.href} class="w-full inline-flex items-center justify-center py-2.5 xs:py-[9px] border-t border-x border-neutral-900 xs:border-transparent xs:hover:border-neutral-800 xs:hover:bg-neutral-900">
-                        {Icon && <Icon className="max-xs:hidden w-5 h-5 me-3 stroke-white" />}
+                        {Icon && <Icon strokeWidth={1.5} className="max-xs:hidden w-5 h-5 me-3 stroke-white" />}
                         {tab.name}
                     </a>
                 </li>

@@ -7,7 +7,9 @@ import { getViewPack } from '../utils/feath';
 import Gallery from '../components/react/Gallery'
 import TabsView from '../components/TabsView.astro';
 import type { Packs } from '../utils/types/definitions';
-import { IconGlobe } from '../components/icons/astro/outline';
+import Message from '../components/Message.astro';
+import { ViewTransitions } from 'astro:transitions';
+
 
 const view: string = Astro.url.searchParams.get("view") || "";
 
@@ -36,6 +38,7 @@ const { data }: PackResponse = await getViewPack(view);
 
 <Layout meta={`Mira ${data.pack?.title} en OnlyPacks. Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos.`} title={`${data.pack?.title} | OnlyPacks` }>
 
+    <ViewTransitions slot="view-transitions" />
 	<main class="max-w-screen-lg mx-auto px-4 py-8">
 
         { data.pack ? 
@@ -50,10 +53,7 @@ const { data }: PackResponse = await getViewPack(view);
                             <Image src={data.pack?.src} width="360" height="524" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={data.pack?.title} />
                         </div>
                     
-                        <div class="inline-flex items-center">
-                            <h1 class="text-white text-lg font-semibold">{data.pack?.title}</h1>
-                            <IconGlobe className="flex-none w-6 h-6 ms-3 stroke-white"/>        
-                        </div>
+                        <Message message={data.pack?.title}/>
                     
                         <div class="flex justify-around">
                         

@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
 
 /* import AdBlockDetector from '../components/AdBlockDetector.astro';
  */
@@ -32,7 +31,8 @@ const { meta, title } = Astro.props;
 		<title>{title}</title>
 <!-- 	<script type='text/javascript' src='//bashfortitudeaffability.com/ae/93/d2/ae93d2cbe6d6cb244b8547c077e3db0a.js'></script> 
  -->
- 		<ViewTransitions />
+ 		<slot name="view-transitions" />
+ 		
 	</head>
 	<body>
 <!-- 

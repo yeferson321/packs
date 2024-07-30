@@ -1,30 +1,32 @@
 ---
 export const prerender = false;
-/* import type { PacksResponse } from '../utils/types/definitions'; */
+import type { PacksResponse } from '../utils/types/definitions';
+import { ViewTransitions } from 'astro:transitions';
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
-/* import Trends from '../components/Trends.astro'; */
-import Pagination from '../components/react/Pagination'
-import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro';
+import Trends from '../components/Trends.astro';
 import Gallery from '../components/Gallery.astro';
+import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro';
+import Pagination from '../components/react/Pagination';
 
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
 
-const response = await fetch(`https://hoypacks.vercel.app/api/test-post.json?offset=${itemsPerPage}&limit=${offset}`);
-const { data } = await response.json();
+const response = await fetch(`${Astro.url.origin}/api/packs.json?offset=${offset}&limit=${itemsPerPage}`);
+const { data }: PacksResponse = await response.json();
 ---
 
 <Layout meta="Packs porno gratis sin acortadores, aquí en OnlyPacks. Descubre la creciente colección de packs caseros y de famosas. Los más relevantes de alta calidad. ¡No hay otro canal de packs más popular y que presente más packs calientes que OnlyPacks! Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos." title="Packs Calientes de Sexo Gratis | OnlyPacks">
+	<ViewTransitions slot="view-transitions" />
 	<main class="max-w-screen-lg mx-auto p-4">
 		<Message message={`Packs calientes a nivel internacional`}/>
-		<!-- <Trends trends={data.trends}/> -->
-		<Gallery server:defer packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" >
+		<Trends trends={data.trends}/>
+		<Gallery server:defer packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4">
 			<GallerySkeleton slot="fallback" className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" itemCount={itemsPerPage}/>
 		</Gallery>
-		{(data.stats.total > itemsPerPage) &&
-    		<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
+		{(data.stats.totalPacks > itemsPerPage) &&
+    		<Pagination client:only="react" totalItems={data.stats.totalPacks || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
 		}
 	</main>
 </Layout>

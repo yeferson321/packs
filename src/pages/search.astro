@@ -12,6 +12,7 @@ const search: string = Astro.url.searchParams.get("search") || "";
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
+console.log("Astro.url", Astro.url)
 
 const { data }: PacksResponse = await getSearchPacks(itemsPerPage, offset, search);
 ---
@@ -20,6 +21,7 @@ const { data }: PacksResponse = await getSearchPacks(itemsPerPage, offset, searc
 
 	<Layout meta={`Mira Packs ${search} porno gratis sin acortadores, aquí en OnlyPacks. Descubre la creciente colección de packs caseros y de famosas. Los más relevantes de alta calidad. ¡No hay otro canal de packs más popular y que presente más packs calientes que OnlyPacks! Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos.`} title={`Packs ${search} de Sexo Gratis | OnlyPacks`}>
 		<main class="max-w-screen-lg mx-auto p-4">
+			<h2 class="text-white">{Astro.url}</h2>
 			<Message message={`Resultados de "${search}" a nivel internacional`}/>
 			<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
 			{(data.stats.total > itemsPerPage) &&

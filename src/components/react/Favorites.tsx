@@ -26,7 +26,7 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 	useEffect(() => {
 		if (validFavorite.length) {
 			 const getData = async () => {
-				const res = await fetch(`/api/test-post.json?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validFavorite)}`);
+				const res = await fetch(`/api/packs.json?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validFavorite)}`);
 
 				// This will activate the closest `error.js` Error Boundary
 				if (!res.ok) throw new Error('Failed to fetch data');

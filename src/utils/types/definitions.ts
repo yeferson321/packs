@@ -1,14 +1,14 @@
-
+export interface IconsProps {
+    strokeWidth?: string | number | undefined;
+    className?: string | undefined;
+};
 
 export interface TabItem {
   name: string;
   href: string;
 };
 
-export interface IconsProps {
-    strokeWidth?: string | number | undefined;
-    className?: string | undefined;
-};
+
 
 export interface Trends {
     href: string;

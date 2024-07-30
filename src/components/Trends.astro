@@ -1,6 +1,5 @@
 ---
-import { IconChevronLeft, IconChevronRight } from './icons/astro/outline';
-
+import { IconChevronLeft, IconChevronRight } from './icons/react/outline';
 
 interface Props { 
     trends: string[];
@@ -33,24 +32,29 @@ const { trends } = Astro.props;
     </div>
 </div>
 
-<script>
-    const scrollContainer = document.getElementById('scroll-container') as HTMLElement;
-    const scrollLeftButton = document.getElementById('scroll-left') as HTMLButtonElement;
-    const scrollRightButton = document.getElementById('scroll-right') as HTMLButtonElement;
+<script is:inline data-astro-rerun>
+    document.addEventListener('astro:page-load', () => {
+        const scrollContainer = document.getElementById('scroll-container')
+        const scrollLeftButton = document.getElementById('scroll-left') 
+        const scrollRightButton = document.getElementById('scroll-right') 
 
-    const updateButtonVisibility = () => {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
-        scrollLeftButton.classList.toggle('hidden', scrollLeft === 0);
-        scrollRightButton.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 1);
-    };
+        const updateButtonVisibility = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+            scrollLeftButton.classList.toggle('hidden', scrollLeft === 0);
+            scrollRightButton.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 1);
+        };
 
-    updateButtonVisibility();
+        const scrollByAmount = (amount) => {
+            scrollContainer.scrollBy({ left: amount, behavior: 'smooth' });
+        };
 
-    window.addEventListener('resize', updateButtonVisibility);
-    scrollContainer.addEventListener('scroll', updateButtonVisibility);
+        scrollLeftButton.addEventListener('click', () => scrollByAmount(-scrollContainer.clientWidth / 2));
+        scrollRightButton.addEventListener('click', () => scrollByAmount(scrollContainer.clientWidth / 2));
 
-    const scrollByAmount = (amount: number) => scrollContainer.scrollBy({ left: amount, behavior: 'smooth' });
+        scrollContainer.addEventListener('scroll', updateButtonVisibility);
 
-    scrollLeftButton.addEventListener('click', () => scrollByAmount(-scrollContainer.clientWidth / 2));
-    scrollRightButton.addEventListener('click', () => scrollByAmount(scrollContainer.clientWidth / 2));
+        window.addEventListener('resize', updateButtonVisibility);
+        updateButtonVisibility();
+    }, { once: true }); 
 </script>
+
