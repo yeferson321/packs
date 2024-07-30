@@ -1,0 +1,77 @@
+---
+import { IconChevronLeft, IconChevronRight } from './icons/react/outline';
+
+interface Props {   
+    totalItems: number;
+    itemsPerPage: number;
+    currentPage: number;
+    maxPages: number;
+    minPages: number;
+};
+
+const { totalItems, itemsPerPage, currentPage, maxPages, minPages } = Astro.props;
+
+const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+const calculatePageRange = (currentPage: number, totalPages: number): { startPage: number, endPage: number, hideLeftContent: boolean, hideRightContent: boolean } => {
+    if (totalPages <= maxPages) return { startPage: 1, endPage: totalPages, hideLeftContent: false, hideRightContent: false };
+    if (currentPage <= minPages) return { startPage: 1, endPage: maxPages, hideLeftContent: false, hideRightContent: true  };
+    if (currentPage > totalPages - minPages) return { startPage: totalPages - minPages, endPage: totalPages, hideLeftContent: true, hideRightContent: false };
+    return {
+        startPage: currentPage - Math.floor((maxPages - 1) / 2),
+        endPage: currentPage + Math.floor((maxPages - 1) / 2),
+        hideLeftContent: true, 
+        hideRightContent: true
+    };
+};
+
+const { startPage, endPage, hideLeftContent, hideRightContent } = calculatePageRange(currentPage, totalPages);
+const pagesToShow = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+const createPageLink = (page: number): string => {
+    if (page <= 1) {
+        return "/"
+    }
+    
+    return `?page=${page}`
+};
+
+---
+
+<nav class="mt-12 flex items-center justify-center space-x-3 xs:space-x-6" aria-label="Pagination Navigation">
+    <a href={currentPage > 1 ? createPageLink(currentPage - 1) : '/'} class={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage > 1 ? 'bg-amber-500 hover:bg-amber-500/90' : 'pointer-events-none cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Previous page">
+        <IconChevronLeft strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage > 1 ? 'stroke-black' : 'stroke-neutral-400' }`}/>
+    </a>
+    <ul class="inline-flex items-center space-x-3 text-base xs:text-xl font-medium text-white">
+        {hideLeftContent && (
+            <>
+                <li>
+                    <a href={createPageLink(1)} class="flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                        1
+                    </a>
+                </li>
+                <span class="h-7 w-px bg-white" aria-hidden="true" />
+            </>
+        )}
+        {pagesToShow.map((page) => (
+            <li>
+                <a href={createPageLink(page)} class={`flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 ${ page === currentPage && 'border-2 border-amber-500' }`}>
+                    {page}
+                </a>
+            </li>
+        ))}
+        {hideRightContent && (
+            <>
+                <span class="h-7 w-px bg-white" aria-hidden="true" />
+                <li>
+                    <a href={createPageLink(totalPages)} class="flex items-center justify-center w-8 xs:w-12 h-8 xs:h-12 rounded-lg bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300">
+                        {totalPages}
+                    </a>
+                </li>
+            </>
+        )}
+    </ul>
+    <a href={currentPage < totalPages ? createPageLink(currentPage + 1) : '/'} class={`p-1.5 xs:px-6 xs:py-3 rounded-lg ${currentPage < totalPages ? 'bg-amber-500 hover:bg-amber-500/90' : 'pointer-events-none cursor-not-allowed bg-neutral-900 opacity-90'}`} aria-label="Next page">
+        <IconChevronRight strokeWidth="4" className={`w-5 xs:w-6 h-5 xs:h-6 ${currentPage < totalPages ? 'stroke-black' : 'stroke-neutral-400' }`}/>
+    </a>
+</nav>

@@ -1,14 +1,14 @@
 import { IconChevronLeft, IconChevronRight } from '../icons/react/outline';
 
-interface Props {   
+interface Props {  
     totalItems: number;
     itemsPerPage: number;
+    currentPage: number;
     maxPages: number;
     minPages: number;
 };
 
-const Pagination = ({ totalItems, itemsPerPage, maxPages, minPages }: Props) => {
-    const currentPage = parseInt(new URLSearchParams(window.location.search).get('page') || '1');
+const Pagination = ({ totalItems, itemsPerPage, currentPage, maxPages, minPages }: Props) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const calculatePageRange = (currentPage: number, totalPages: number) => {
@@ -37,6 +37,8 @@ const Pagination = ({ totalItems, itemsPerPage, maxPages, minPages }: Props) => 
         }
 
         const queryString = urlParams.toString();
+
+        console.log("queryString", queryString)
         return queryString ? `?${queryString}` : '/';
     };
 

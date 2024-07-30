@@ -12,7 +12,6 @@ const search: string = Astro.url.searchParams.get("search") || "";
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
-console.log("Astro.url", Astro.url)
 
 const { data }: PacksResponse = await getSearchPacks(itemsPerPage, offset, search);
 ---
@@ -25,7 +24,7 @@ const { data }: PacksResponse = await getSearchPacks(itemsPerPage, offset, searc
 			<Message message={`Resultados de "${search}" a nivel internacional`}/>
 			<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
 			{(data.stats.total > itemsPerPage) &&
-    			<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
+    			<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0} currentPage={page} maxPages={4} minPages={3} />
 			}
 		</main>
 	</Layout>
