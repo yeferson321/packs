@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
 import Trends from '../components/Trends.astro';
 import Gallery from '../components/Gallery.astro';
-import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro';
+/* import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro'; */
 import Pagination from '../components/react/Pagination';
 
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
@@ -22,9 +22,9 @@ const { data }: PacksResponse = await response.json();
 	<main class="max-w-screen-lg mx-auto p-4">
 		<Message message={`Packs calientes a nivel internacional`}/>
 		<Trends trends={data.trends}/>
-		<Gallery server:defer packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4">
-			<GallerySkeleton slot="fallback" className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" itemCount={itemsPerPage}/>
-		</Gallery>
+		<Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4">
+			<!-- <GallerySkeleton slot="fallback" className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" itemCount={itemsPerPage}/> -->
+		</Gallery>	
 		{(data.stats.totalPacks > itemsPerPage) &&
     		<Pagination client:only="react" totalItems={data.stats.totalPacks || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
 		}
