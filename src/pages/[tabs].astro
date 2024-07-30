@@ -24,7 +24,7 @@ const { data }: PacksResponse = await getTabPacks(itemsPerPage, offset, tabs);
 		<Message message={`Packs ${tabs} a nivel internacional`}/>
 		<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
 		{(data.stats.total > itemsPerPage) &&
-    		<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0} maxPages={4} minPages={3} />
+    		<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0}  currentPage={page} maxPages={4} minPages={3} />
 		}
 	</main>
 </Layout>
