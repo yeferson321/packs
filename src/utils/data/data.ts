@@ -1,19 +1,18 @@
-import type { Trends, TabItem, Packs } from '../types/definitions';
-
+import type { Packs, TabsElements, Trends } from '../types/definitions';
 
 export const trendingSearches: Trends[] = [
     { trend: "jocelyn macias", href: "jocelyn macias" },
     { trend: "karen la colombiana", href: "karen la colombiana" },
     { trend: "salome colombiana", href: "salome colombiana" },
-    { trend: "jocessita", href: "live" },
-    { trend: "andrea pardo", href: "live" },
-    { trend: "kaeelen garcia guatemala", href: "live" },
-    { trend: "nicolane escobar colombiana", href: "live" },
-    { trend: "auhneesh nicole", href: "live" },
-    { trend: "valentina nappi", href: "live" },
+    { trend: "jocessita", href: "jocessita" },
+    { trend: "andrea pardo", href: "andrea pardo" },
+    { trend: "kathrin 3", href: "kathrin 3" },
+    { trend: "melisa gutierrez", href: "melisa gutierrez" },
+    { trend: "canela skin", href: "canela skin" },
+    { trend: "valentina nappi", href: "valentina nappi" },
 ];
 
-export const tabElements: TabItem[] = [
+export const tabsElements: TabsElements[] = [
     { name: "INICIO", href: "/" },
     { name: "CASEROS", href: "/caseros" },
     { name: "ONLYFANS", href: "/onlyfans" },
@@ -23,7 +22,6 @@ export const tabElements: TabItem[] = [
 export const packs: Packs[] = [
     {
         id: "234fwdf436y35tg",
-        tab: "caseros",
         percent: 1,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -32,7 +30,6 @@ export const packs: Packs[] = [
     },
     {
         id: "34f3g34g34g3345g",
-        tab: "onlyfans",
         percent: 2,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -41,7 +38,6 @@ export const packs: Packs[] = [
     },
     {
         id: "34g35gerfw4g34tg4",
-        tab: "onlyfans",
         percent: 3,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -50,7 +46,6 @@ export const packs: Packs[] = [
     },
     {
         id: "45g35gsfe5r6578546",
-        tab: "caseros",
         percent: 4,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -59,7 +54,6 @@ export const packs: Packs[] = [
     },
     {
         id: "sdbnrm3f34f398hgf3",
-        tab: "caseros",
         percent: 5,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -68,7 +62,6 @@ export const packs: Packs[] = [
     },
     {
         id: "wef27oiugwrf3f3ver",
-        tab: "onlyfans",
         percent: 6,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -77,7 +70,6 @@ export const packs: Packs[] = [
     },
     {
         id: "v356h456h4g343434",
-        tab: "onlyfans",
         percent: 7,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -86,7 +78,6 @@ export const packs: Packs[] = [
     },
     {
         id: "2f54768kjntf34f2g",
-        tab: "caseros",
         percent: 8,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -95,7 +86,6 @@ export const packs: Packs[] = [
     },
     {
         id: "f2g4hetc23246657j6",
-        tab: "telegram",
         percent: 9,
         hot: new Date("2024-07-05T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -104,7 +94,6 @@ export const packs: Packs[] = [
     },
     {
         id: "fvnmko798676gffe3f2",
-        tab: "caseros",
         percent: 10,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -113,7 +102,6 @@ export const packs: Packs[] = [
     },
     {
         id: "ewrgh578u7hgr3f",
-        tab: "telegram",
         percent: 11,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -122,7 +110,6 @@ export const packs: Packs[] = [
     },
     {
         id: "124567ujtfv3rr4fg34",
-        tab: "telegram",
         percent: 12,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -131,7 +118,6 @@ export const packs: Packs[] = [
     },
     {
         id: "g4534675jhbrg345g45g4",
-        tab: "onlyfans",
         percent: 13,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -140,7 +126,6 @@ export const packs: Packs[] = [
     },
     {
         id: "342536h54rgv3rg3",
-        tab: "telegram",
         percent: 14,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -149,7 +134,6 @@ export const packs: Packs[] = [
     },
     {
         id: "2543647uhbrg354g54g",
-        tab: "telegram",
         percent: 15,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -158,7 +142,6 @@ export const packs: Packs[] = [
     },
     {
         id: "efrw45h456h45g34",
-        tab: "caseros",
         percent: 16,
         hot: new Date("2024-07-03T01:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -167,7 +150,6 @@ export const packs: Packs[] = [
     },
     {
         id: "2mfo3489fn3f6h46",
-        tab: "caseros",
         percent: 17,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -176,7 +158,6 @@ export const packs: Packs[] = [
     },
     {
         id: "23rf3ef43f0143f",
-        tab: "caseros",
         percent: 18,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -185,7 +166,6 @@ export const packs: Packs[] = [
     },
     {
         id: "24r20m2409r2j4",
-        tab: "caseros",
         percent: 19,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -194,7 +174,6 @@ export const packs: Packs[] = [
     },
     {
         id: "gbhnj3425234fwe",
-        tab: "caseros",
         percent: 20,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -203,7 +182,6 @@ export const packs: Packs[] = [
     },
     {
         id: "mnifub38940f4",
-        tab: "caseros",
         percent: 21,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -212,7 +190,6 @@ export const packs: Packs[] = [
     },
     {
         id: "onibfu4u8f34f",
-        tab: "caseros",
         percent: 22,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -221,7 +198,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nifbhu2348hf9r24f",
-        tab: "caseros",
         percent: 23,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -230,7 +206,6 @@ export const packs: Packs[] = [
     },
     {
         id: "omfnibu4fo34f",
-        tab: "caseros",
         percent: 24,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -239,7 +214,6 @@ export const packs: Packs[] = [
     },
     {
         id: "omnifbu34fio34f",
-        tab: "caseros",
         percent: 25,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -248,7 +222,6 @@ export const packs: Packs[] = [
     },
     {
         id: "fn3b4gf8h934",
-        tab: "caseros",
         percent: 26,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -257,7 +230,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nibuf24ifof34f4f3",
-        tab: "caseros",
         percent: 27,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -266,7 +238,6 @@ export const packs: Packs[] = [
     },
     {
         id: "onibdu23h9f24f",
-        tab: "caseros",
         percent: 28,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -275,7 +246,6 @@ export const packs: Packs[] = [
     },
     {
         id: "knbugf8792dwef434f",
-        tab: "caseros",
         percent: 29,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -284,7 +254,6 @@ export const packs: Packs[] = [
     },
     {
         id: "njfheb2h94iof34",
-        tab: "caseros",
         percent: 30,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -293,7 +262,6 @@ export const packs: Packs[] = [
     },
     {
         id: "oj94h8bfy2u3f24f",
-        tab: "caseros",
         percent: 31,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -302,7 +270,6 @@ export const packs: Packs[] = [
     },
     {
         id: "bvyu43if34f4rf34",
-        tab: "caseros",
         percent: 32,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -311,7 +278,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nbgyui34f34",
-        tab: "caseros",
         percent: 33,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -320,7 +286,6 @@ export const packs: Packs[] = [
     },
     {
         id: "koniuhbg89io3rf3",
-        tab: "caseros",
         percent: 34,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -329,7 +294,6 @@ export const packs: Packs[] = [
     },
     {
         id: "kinj3ufh892304f234f",
-        tab: "caseros",
         percent: 35,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -338,7 +302,6 @@ export const packs: Packs[] = [
     },
     {
         id: "mnbvfrt67u8ie3f",
-        tab: "caseros",
         percent: 36,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -347,7 +310,6 @@ export const packs: Packs[] = [
     },
     {
         id: "wem04mf3nwc2ef34f",
-        tab: "caseros",
         percent: 37,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -356,7 +318,6 @@ export const packs: Packs[] = [
     },
     {
         id: "mnijdb28h940f34f4e",
-        tab: "caseros",
         percent: 38,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -365,7 +326,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nwefb9q30fefw4",
-        tab: "caseros",
         percent: 39,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -374,7 +334,6 @@ export const packs: Packs[] = [
     },
     {
         id: "34of2h345gni2o35g",
-        tab: "caseros",
         percent: 40,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -383,7 +342,6 @@ export const packs: Packs[] = [
     },
     {
         id: "2435gbrukilo890y3",
-        tab: "caseros",
         percent: 41,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -392,7 +350,6 @@ export const packs: Packs[] = [
     },
     {
         id: "wefmnw3br9203",
-        tab: "caseros",
         percent: 42,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -401,7 +358,6 @@ export const packs: Packs[] = [
     },
     {
         id: "zxcvw45467ujuyn5",
-        tab: "caseros",
         percent: 43,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -410,7 +366,6 @@ export const packs: Packs[] = [
     },
     {
         id: "qrg4t5h67ju8ikjnb2qg",
-        tab: "caseros",
         percent: 44,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -419,7 +374,6 @@ export const packs: Packs[] = [
     },
     {
         id: "niugb3y4rh5g890jwrr",
-        tab: "caseros",
         percent: 45,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -428,7 +382,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nibuvt7g8h394fg24",
-        tab: "caseros",
         percent: 46,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -437,7 +390,6 @@ export const packs: Packs[] = [
     },
     {
         id: "nbuvt7g8hu24g45g",
-        tab: "caseros",
         percent: 47,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
@@ -446,8 +398,7 @@ export const packs: Packs[] = [
     },
     {
         id: "wrvgw4ni284g25",
-        tab: "caseros",
-        percent: 42,
+        percent: 48,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "me perra com estas espero que bien",
@@ -455,8 +406,7 @@ export const packs: Packs[] = [
     },
     {
         id: "ft6h465723g24",
-        tab: "caseros",
-        percent: 43,
+        percent: 49,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -464,8 +414,7 @@ export const packs: Packs[] = [
     },
     {
         id: "njhubgy78u945g",
-        tab: "caseros",
-        percent: 44,
+        percent: 50,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -473,8 +422,7 @@ export const packs: Packs[] = [
     },
     {
         id: "mnijhbugvytf6785",
-        tab: "caseros",
-        percent: 45,
+        percent: 51,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -482,8 +430,7 @@ export const packs: Packs[] = [
     },
     {
         id: "mnicubdfe2g849f234",
-        tab: "caseros",
-        percent: 46,
+        percent: 52,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
@@ -491,8 +438,7 @@ export const packs: Packs[] = [
     },
     {
         id: "ergo245ug45gw45g",
-        tab: "caseros",
-        percent: 47,
+        percent: 53,
         hot: new Date("2024-06-09T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "me perra com estas espero que bien",
@@ -500,4 +446,3 @@ export const packs: Packs[] = [
     },
 ];
 
-export const trends: string[] = ['sophie dee', 'sophie dee', 'sophie dee', 'jovencita colombiana', 'kathrin 3', 'melisa gutierrez', 'canela skin', 'krissy lynn', 'blake blossom'];

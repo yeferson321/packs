@@ -1,6 +1,6 @@
 ---
 import type { IconsProps } from '../utils/types/definitions';
-import { tabElements } from '../utils/data/data';
+import { tabsElements } from '../utils/data/data';
 import { IconHome, IconCaseros, IconOnlyfans, IconTelegram } from './icons/react/outline';
 
 const { pathname } = Astro.url;
@@ -15,7 +15,7 @@ const iconMap: Record<string, ({ strokeWidth, className }: IconsProps) => JSX.El
 
 <nav class="max-w-3xl mx-auto" aria-label="Page navigation">
     <ul class="flex flex-nowrap -mb-[2px] text-[11px] xs:text-xs tracking-wide font-medium text-neutral-350 xs:text-white">
-        {tabElements.map((tab) => {
+        {tabsElements.map((tab) => {
             const Icon = iconMap[tab.name];
             return (
                 <li class={`w-full ${ pathname === tab.href && "border-b-2 border-b-amber-500" }`}>

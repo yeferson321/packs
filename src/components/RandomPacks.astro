@@ -1,10 +1,16 @@
 ---
-import type { RandomPacksResponse } from '../utils/types/definitions';
-import { getRandomPacks } from '../utils/feath';
-import Gallery from './react/Gallery'
+import type { PacksResponse } from '../utils/types/definitions';
+import Gallery from './Gallery.astro' ;
 
-const { data }: RandomPacksResponse = await getRandomPacks(12);
+interface Props {   
+    limit: number;
+};
+
+const { limit } = Astro.props;
+
+const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${limit}`);
+const { data }: PacksResponse = await response.json();
 ---
 
 <h2 class="text-white text-base">Packs calientes recomendados</h1>
-<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+<Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />

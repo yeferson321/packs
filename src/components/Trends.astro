@@ -1,11 +1,6 @@
 ---
+import { trendingSearches } from '../utils/data/data';
 import { IconChevronLeft, IconChevronRight } from './icons/react/outline';
-
-interface Props { 
-    trends: string[];
-};
-
-const { trends } = Astro.props;
 ---
 
 <div class="mt-3 relative">
@@ -16,10 +11,10 @@ const { trends } = Astro.props;
     </div>
     <div id="scroll-container" class="overflow-x-auto touch-pan-x hide-scroll">
         <ul class="inline-flex items-center space-x-2 xs:space-x-3 whitespace-nowrap list-none text-sm text-white">
-            {trends.map((trend) => (
+            {trendingSearches?.map((trending) => (
                 <li>
-                    <a href={`search?search=${trend}`} class="block py-2 px-3.5 rounded-full border-2 border-neutral-800 bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 cursor-pointer">
-                        {trend}                           
+                    <a href={`search?search=${trending.href}`} class="block py-2 px-3.5 rounded-full border-2 border-neutral-800 bg-neutral-900 transition ease-in-out hover:bg-neutral-800 duration-300 cursor-pointer">
+                        {trending.trend}                           
                     </a>
                 </li>
             ))}
@@ -32,29 +27,35 @@ const { trends } = Astro.props;
     </div>
 </div>
 
-<script is:inline data-astro-rerun>
-    document.addEventListener('astro:page-load', () => {
-        const scrollContainer = document.getElementById('scroll-container')
-        const scrollLeftButton = document.getElementById('scroll-left') 
-        const scrollRightButton = document.getElementById('scroll-right') 
+<script>
+    const scrollContainer = document.getElementById('scroll-container') as HTMLDivElement;
+    const scrollLeftButton = document.getElementById('scroll-left') as HTMLButtonElement;
+    const scrollRightButton = document.getElementById('scroll-right') as HTMLButtonElement;
 
-        const updateButtonVisibility = () => {
-            const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
-            scrollLeftButton.classList.toggle('hidden', scrollLeft === 0);
-            scrollRightButton.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 1);
+    const updateButtonVisibility = () => {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+        scrollLeftButton.classList.toggle('hidden', scrollLeft === 0);
+        scrollRightButton.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 1);
+    };
+
+    const scrollByAmount = (amount: number) => {
+        scrollContainer.scrollBy({ left: amount, behavior: 'smooth' });
+    };
+
+    scrollLeftButton.addEventListener('click', () => scrollByAmount(-scrollContainer.clientWidth / 2));
+    scrollRightButton.addEventListener('click', () => scrollByAmount(scrollContainer.clientWidth / 2));
+
+    const debounce = (func: Function, wait: number) => {
+        let timeout: number;
+        return (...args: []) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
         };
+    };
 
-        const scrollByAmount = (amount) => {
-            scrollContainer.scrollBy({ left: amount, behavior: 'smooth' });
-        };
+    window.addEventListener('resize', debounce(updateButtonVisibility, 200));
+    scrollContainer.addEventListener('scroll', updateButtonVisibility);
 
-        scrollLeftButton.addEventListener('click', () => scrollByAmount(-scrollContainer.clientWidth / 2));
-        scrollRightButton.addEventListener('click', () => scrollByAmount(scrollContainer.clientWidth / 2));
-
-        scrollContainer.addEventListener('scroll', updateButtonVisibility);
-
-        window.addEventListener('resize', updateButtonVisibility);
-        updateButtonVisibility();
-    }, { once: true }); 
+    updateButtonVisibility();
 </script>
 

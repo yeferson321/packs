@@ -1,30 +1,30 @@
 ---
 export const prerender = false;
 import type { PacksResponse } from '../utils/types/definitions';
-import { tabElements } from '../utils/data/data'
-import { getTabPacks } from '../utils/feath';
+import { tabsElements } from '../utils/data/data';
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
-import Gallery from '../components/react/Gallery'
-import Pagination from '../components/react/Pagination'
+import Gallery from '../components/Gallery.astro';
+import Pagination from '../components/Pagination.astro';
 
 const { tabs = '' } = Astro.params;
-const route = tabElements.find((tab) => tab.name.toLowerCase() === tabs);
+const route = tabsElements.find((tab) => tab.name.toLowerCase() === tabs);
 if (!route) return Astro.redirect("/404");
 
 const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
 
-const { data }: PacksResponse = await getTabPacks(itemsPerPage, offset, tabs);
+const response = await fetch(`${Astro.url.origin}/api/packs.json?offset=${offset}&limit=${itemsPerPage}&search=${tabs}`);
+const { data }: PacksResponse = await response.json();
 ---
 
 <Layout meta=`Packs ${tabs} porno gratis sin acortadores en OnlyPacks. Mira los mejores packs ${tabs} de sexo nuevos o recientes gratis en OnlyPacks.` title={`Packs ${tabs} de Sexo nuevos o recientes | OnlyPacks`}>
 	<main class="max-w-screen-lg mx-auto p-4">
 		<Message message={`Packs ${tabs} a nivel internacional`}/>
-		<Gallery client:only="react" packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
-		{(data.stats.total > itemsPerPage) &&
-    		<Pagination client:only="react" totalItems={data.stats.total || 0} itemsPerPage={itemsPerPage || 0}  currentPage={page} maxPages={4} minPages={3} />
+		<Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+		{data.stats.total > itemsPerPage &&
+    		<Pagination totalItems={data.stats.total} itemsPerPage={itemsPerPage} currentPage={page} maxPages={4} minPages={3} />
 		}
 	</main>
 </Layout>

@@ -11,9 +11,9 @@ const offset: number = (page - 1) * itemsPerPage;
 
 <Layout meta="Packs porno gratis sin acortadores, aquí en OnlyPacks. Descubre la creciente colección de packs caseros y de famosas. Los más relevantes de alta calidad. ¡No hay otro canal de packs más popular y que presente más packs calientes que OnlyPacks! Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos." title="Packs favoritos - Lista de tus packs favoritos | OnlyPacks">
 	<Favorite client:only="react" page={page} itemsPerPage={itemsPerPage}, offset={offset}>
-		<Message slot="message" message="Tus packs favoritos" />
-		
 
+		<Message slot="message" message="Tus packs favoritos" />
+	
 		<main slot="fallback" class="max-w-screen-lg mx-auto p-4">
 			<Message slot="message" message="Tus packs favoritos" />
 			<div class="my-3">
@@ -27,6 +27,7 @@ const offset: number = (page - 1) * itemsPerPage;
 			</h2>
 			<GallerySkeleton slot="fallback" className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" itemCount={itemsPerPage}/>
 		</main>
+		
 	</Favorite>
 </Layout>
 

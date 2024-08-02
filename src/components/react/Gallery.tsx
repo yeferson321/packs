@@ -11,10 +11,10 @@ const Gallery = ({ className, packs }: Props) => {
         const now = new Date();
         const differenceInMilliseconds = now.getTime() - date.getTime();
         const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-
+    
         if (differenceInMilliseconds < 2 * oneDayInMilliseconds) return { status: 'CALIENTE HOY', background: 'bg-amber-500' };
         if (differenceInMilliseconds < 4 * oneDayInMilliseconds) return { status: 'RECIENTE', background: 'bg-blue-500' };
-
+        
         return { status: 'RECOMENDADO', background: 'bg-blue-500' };
     };
 

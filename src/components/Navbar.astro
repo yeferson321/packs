@@ -1,7 +1,6 @@
 ---
 import { trendingSearches } from '../utils/data/data';
 import { IconHeart, IconLens, IconOnlypacks, IconStar } from './icons/react/outline';
-
 import Modal from './Modal.astro';
 ---
 
@@ -13,7 +12,7 @@ import Modal from './Modal.astro';
 
     <div class="max-xs:hidden relative w-full xs:max-w-md xl:max-w-xl">
 
-        <form id="search-form" class="search-form">   
+        <form class="search-form">   
             <label for="search-input" class="sr-only">Search</label>
             <div class="relative">
                 <input id="search-input" type="text" class="search-input block w-full py-2.5 pr-4 pl-11 rounded-full border-0 text-sm text-white placeholder:text-sm placeholder:text-neutral-400 outline-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-700/50 bg-neutral-800" placeholder="Buscar en Onlypacks" autocomplete="off" required/>
@@ -55,10 +54,10 @@ import Modal from './Modal.astro';
 
                     <div class="flex items-center">      
 
-                        <form id="search-form" class="w-full search-form">    
+                        <form class="w-full search-form">    
                             <label for="search-input" class="sr-only">Search</label>
                             <div class="relative">
-                                <input id="search-input" type="text" class="search-input search block w-full py-1.5 pr-4 pl-11 rounded-full border-0 text-lg text-white placeholder:text-lg placeholder:text-neutral-400 outline-none focus:outline-none focus:ring-0 bg-neutral-800" placeholder="Buscar en Onlypacks" autocomplete="off" required/>
+                                <input id="search-input" autofocus type="text" class="search-input search block w-full py-1.5 pr-4 pl-11 rounded-full border-0 text-lg text-white placeholder:text-lg placeholder:text-neutral-400 outline-none focus:outline-none focus:ring-0 bg-neutral-800" placeholder="Buscar en Onlypacks" autocomplete="off" required/>
                                 <button type="submit" class="absolute start-1.5 bottom-1 p-1.5 rounded-full hover:bg-neutral-400/10" aria-label="consult search">
                                     <IconLens strokeWidth="3" className="w-5 h-5 stroke-white"/>
                                 </button>
@@ -106,41 +105,40 @@ import Modal from './Modal.astro';
     const searchForm =  document.querySelectorAll('.search-form') as NodeListOf<HTMLFormElement>;
     const searchInput = document.querySelectorAll('.search-input') as NodeListOf<HTMLInputElement>;
     const trendingDiv = document.getElementById('trending-searches') as HTMLDivElement;
-    const searchModal = document.getElementById('search-modal') as HTMLElement;
-       
+    const searchModal = document.getElementById('modal') as HTMLElement;
+
+    interface OpenChangeEventDetail {
+        open: boolean;
+    };
+
+    const handleFormSubmit = (event: SubmitEvent) => {
+        event.preventDefault(); // Prevent the default form submission
+        
+        searchInput.forEach(input => {
+            const searchTerm = input.value.trim();
+            if (searchTerm) {   // If the search term is not empty 
+                const params = new URLSearchParams({ search: searchTerm }); // Create URL parameters
+                window.location.href = `/search?${params.toString()}`; // Redirect to the search URL
+            };
+        });
+    };
+
     // Handle form submission
     searchForm.forEach(form => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent the default form submission
-
-            searchInput.forEach(input => {
-                const searchTerm = input.value.trim();
-                if (searchTerm) {   // If the search term is not empty
-                    const params = new URLSearchParams({ search: searchTerm }); // Create URL parameters
-                    window.location.href = `/search?${params.toString()}`; // Redirect to the search URL
-                };
-            });
-        });
-    });
-
-    // Handle input field losing focus
-    searchInput.forEach(input => {
-        input.addEventListener('blur', () => {
-            setTimeout(() => {
-                trendingDiv.classList.add('hidden'); // Hide the trending searches div
-            }, 300); // Add a delay to allow clicking on trending items
-        });
+        form.addEventListener('submit', handleFormSubmit);
     });
 
     searchInput.forEach(input => {
         input.addEventListener('focus', () => {
             trendingDiv.classList.remove('hidden'); // Show the trending searches div
         });
-    });
 
-    interface OpenChangeEventDetail {
-        open: boolean;
-    };
+        input.addEventListener('blur', () => {
+            setTimeout(() => {
+                trendingDiv.classList.add('hidden'); // Hide the trending searches div
+            }, 300); // Add a delay to allow clicking on trending items
+        });
+    });
 
     searchModal.addEventListener('modalStateChange', (event) => {
         const customEvent = event as CustomEvent<OpenChangeEventDetail>;

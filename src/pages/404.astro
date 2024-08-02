@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Message from '../components/Message.astro';
 import RandomPacks from '../components/RandomPacks.astro';
+
+const limit: number = 12;
 ---
 
 <Layout meta="Packs porno gratis sin acortadores, aquí en OnlyPacks. Descubre la creciente colección de packs caseros y de famosas. Los más relevantes de alta calidad. ¡No hay otro canal de packs más popular y que presente más packs calientes que OnlyPacks! Navega a través de nuestra impresionante selección de packs porno en calidad HD en cualquiera de tus dispositivos." title="No se han encontrado resultados | OnlyPacks">
@@ -11,6 +13,6 @@ import RandomPacks from '../components/RandomPacks.astro';
             <p class="text-xs text-white">Lo sentimos, pero no pudimos encontrar la página que estás buscando.</p>
             <a href="/" class="text-xs text-amber-500 hover:underline">Volver a la página principal</a>
         </div>
-        <RandomPacks/>
+        <RandomPacks limit={limit}/>
     </main>
 </Layout>

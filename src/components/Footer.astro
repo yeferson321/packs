@@ -1,5 +1,5 @@
 ---
-import { tabElements } from '../utils/data/data';
+import { tabsElements } from '../utils/data/data';
 import { IconOnlypacks } from './icons/react/outline';
 
 const getCurrentYear = (): number => {
@@ -20,7 +20,7 @@ const getCurrentYear = (): number => {
                 <IconOnlypacks className="h-7 xs:h-9"/>
             </a>
             <ul class="flex flex-wrap items-center gap-4 xs:gap-6 mb-6 text-sm font-medium text-neutral-400 xs:mb-0">
-                {tabElements.map((tab) => (
+                {tabsElements.map((tab) => (
                     <li>
                         <a href={tab.href} class="hover:underline">{tab.name}</a>
                     </li>

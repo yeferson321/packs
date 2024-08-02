@@ -1,6 +1,6 @@
 <slot name="button" />
 
-<div id="search-modal" data-open="false" class="hidden modal-animation absolute z-20" role="dialog">
+<div id="modal" data-open="false" class="hidden modal-animation absolute z-20" role="dialog">
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto backdrop-blur-sm dark:bg-black/90">
         <slot name="content" />
     </div>
@@ -23,7 +23,7 @@
 </style>
 
 <script>
-    const searchModal = document.getElementById('search-modal') as HTMLElement;
+    const searchModal = document.getElementById('modal') as HTMLElement;
     const closeModal = document.getElementById('close-modal') as HTMLElement;
     const openModal = document.getElementById('open-modal') as HTMLButtonElement;
 
@@ -54,8 +54,8 @@
 
     // Add event listener for window resize
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 700) {
-        setOpenState(false);
-      };
+        if (window.innerWidth >= 700) {
+          setOpenState(false);
+        };
     });
 </script> 

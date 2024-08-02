@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { FavoritesPacksResponse } from '../../utils/types/definitions';
+import type { PacksResponse } from '../../utils/types/definitions';
 import Gallery from './Gallery';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Props) => {
     const [noFound, setNoFound] = useState<boolean>();
-    const [data, setData] = useState<FavoritesPacksResponse | undefined>(undefined);
+    const [data, setData] = useState<PacksResponse | undefined>(undefined);
 	const favoritePacks: string[] = JSON.parse(window.localStorage.getItem('favoritePacks') || "[]");
 	const validFavorite: string[] = favoritePacks.filter(id => id !== '');
 /* 
@@ -31,7 +31,7 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 				// This will activate the closest `error.js` Error Boundary
 				if (!res.ok) throw new Error('Failed to fetch data');
 
-				const data: FavoritesPacksResponse = await res.json();
+				const data: PacksResponse = await res.json();
 
 				console.log("data", !data.data.packs.length)
 				if (!data.data.packs.length) {
@@ -88,7 +88,3 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 		)
 	)
 };
-
-
-
-

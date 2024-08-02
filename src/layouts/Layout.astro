@@ -1,21 +1,13 @@
 ---
-
-/* import AdBlockDetector from '../components/AdBlockDetector.astro';
- */
-
 import Navbar from '../components/Navbar.astro';
 import Tabs from '../components/Tabs.astro';
-
-/* import Trends from '../components/Trends.astro'; */
-
 import AdsFooter from '../components/AdsFooter.astro';
 import Footer from '../components/Footer.astro';
-
 
 interface Props {
 	meta: string;
 	title: string;
-}
+};
 
 const { meta, title } = Astro.props;
 ---
@@ -29,20 +21,17 @@ const { meta, title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-<!-- 	<script type='text/javascript' src='//bashfortitudeaffability.com/ae/93/d2/ae93d2cbe6d6cb244b8547c077e3db0a.js'></script> 
- -->
  		<slot name="view-transitions" />
- 		
+		<!-- <script type='text/javascript' src='//bashfortitudeaffability.com/ae/93/d2/ae93d2cbe6d6cb244b8547c077e3db0a.js'></script>
+	 -->
 	</head>
 	<body>
-<!-- 
-		<AdBlockDetector /> -->
-		
 
 		<header class="bg-neutral-900/60 border-b border-neutral-900">
 
 			<div class="max-w-screen-lg mx-auto">
 
+				
 				<Navbar/>
 	
 				<Tabs/>
@@ -57,7 +46,8 @@ const { meta, title } = Astro.props;
 
 		<Footer/>
 
-		<!-- <script type='text/javascript' src='//bashfortitudeaffability.com/40/3c/d5/403cd58b57a2d7e97ac12e748eee98dd.js'></script> -->
+		<script type='text/javascript' src='//bashfortitudeaffability.com/40/3c/d5/403cd58b57a2d7e97ac12e748eee98dd.js'></script>
+	
 	</body>
 </html>
 
