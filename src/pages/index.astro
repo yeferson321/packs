@@ -11,7 +11,12 @@ const page: number = parseInt(Astro.url.searchParams.get("page") || "1");
 const itemsPerPage: number = 12;
 const offset: number = (page - 1) * itemsPerPage;
 
-const response = await fetch(`${Astro.url.origin}/api/packs.json?offset=${offset}&limit=${itemsPerPage}`);
+const response = await fetch(`${Astro.url.origin}/api/packs.json?offset=${offset}&limit=${itemsPerPage}`, {
+    headers: { 'X-Auth-Token': import.meta.env.SECRET_TOKEN }
+});
+
+if (!response.ok) return Astro.redirect("/404");
+
 const { data }: PacksResponse = await response.json();
 ---
 

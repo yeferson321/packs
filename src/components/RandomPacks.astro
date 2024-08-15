@@ -1,6 +1,6 @@
 ---
 import type { PacksResponse } from '../utils/types/definitions';
-import Gallery from './Gallery.astro' ;
+import Gallery from './react/Gallery';
 
 interface Props {   
     limit: number;
@@ -8,9 +8,15 @@ interface Props {
 
 const { limit } = Astro.props;
 
-const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${limit}`);
+const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${limit}`, {
+    headers: { 'X-Auth-Token': import.meta.env.SECRET_TOKEN }
+});
+
+if (!response.ok) return Astro.redirect("/404");
+
 const { data }: PacksResponse = await response.json();
+
+console.log("se ejecuto")
 ---
 
-<h2 class="text-white text-base">Packs calientes recomendados</h1>
 <Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />

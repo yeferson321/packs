@@ -1,6 +1,6 @@
-import type { IconsProps } from "../../../utils/types/definitions";
+import type { IconProps } from "../../../utils/types/definitions";
 
-export const IconOnlypacks = ({ className }: IconsProps) => (
+export const IconOnlypacks = ({ className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159 40" fill="none" className={className} aria-hidden="true">
         <path d="M73 4C73 1.79086 74.7909 0 77 0H155C157.209 0 159 1.79086 159 4V36C159 38.2091 157.209 40 155 40H77C74.7909 40 73 38.2091 73 36V20V4Z" fill="#F49200" />
         <path d="M24.1907 19.4545C24.1907 21.7545 23.7548 23.7112 22.8829 25.3246C22.0178 26.938 20.8369 28.1703 19.3402 29.0217C17.8504 29.8661 16.1752 30.2884 14.3147 30.2884C12.4404 30.2884 10.7583 29.8627 9.26851 29.0114C7.77869 28.16 6.60125 26.9277 5.73619 25.3143C4.87114 23.7009 4.43861 21.7476 4.43861 19.4545C4.43861 17.1546 4.87114 15.1979 5.73619 13.5845C6.60125 11.9711 7.77869 10.7422 9.26851 9.89773C10.7583 9.0464 12.4404 8.62074 14.3147 8.62074C16.1752 8.62074 17.8504 9.0464 19.3402 9.89773C20.8369 10.7422 22.0178 11.9711 22.8829 13.5845C23.7548 15.1979 24.1907 17.1546 24.1907 19.4545ZM19.6698 19.4545C19.6698 17.9647 19.4467 16.7083 19.0004 15.6854C18.561 14.6624 17.9397 13.8866 17.1364 13.358C16.3331 12.8293 15.3926 12.565 14.3147 12.565C13.2368 12.565 12.2962 12.8293 11.4929 13.358C10.6897 13.8866 10.0649 14.6624 9.61865 15.6854C9.17926 16.7083 8.95956 17.9647 8.95956 19.4545C8.95956 20.9444 9.17926 22.2008 9.61865 23.2237C10.0649 24.2467 10.6897 25.0225 11.4929 25.5511C12.2962 26.0798 13.2368 26.3441 14.3147 26.3441C15.3926 26.3441 16.3331 26.0798 17.1364 25.5511C17.9397 25.0225 18.561 24.2467 19.0004 23.2237C19.4467 22.2008 19.6698 20.9444 19.6698 19.4545ZM31.7986 20.8551V30H27.4115V14.1818H31.5926V16.9727H31.778C32.1281 16.0527 32.7152 15.3249 33.539 14.7894C34.3629 14.247 35.3618 13.9759 36.5358 13.9759C37.6343 13.9759 38.592 14.2161 39.409 14.6967C40.226 15.1773 40.8611 15.8639 41.3142 16.7564C41.7674 17.642 41.9939 18.6993 41.9939 19.9283V30H37.6068V20.7109C37.6137 19.7429 37.3665 18.9877 36.8654 18.4453C36.3642 17.8961 35.6742 17.6214 34.7954 17.6214C34.205 17.6214 33.6832 17.7485 33.2301 18.0025C32.7838 18.2565 32.4337 18.6272 32.1796 19.1147C31.9325 19.5953 31.8055 20.1754 31.7986 20.8551ZM49.8386 8.90909V30H45.4516V8.90909H49.8386ZM56.0614 35.9318C55.5053 35.9318 54.9835 35.8872 54.496 35.7979C54.0155 35.7156 53.6173 35.6091 53.3014 35.4787L54.2901 32.2038C54.805 32.3617 55.2684 32.4476 55.6804 32.4613C56.0991 32.475 56.4596 32.3789 56.7617 32.1729C57.0706 31.967 57.3212 31.6168 57.5134 31.1225L57.7709 30.4531L52.0965 14.1818H56.7102L59.985 25.7983H60.1498L63.4556 14.1818H68.1001L61.952 31.7095C61.6568 32.5608 61.2552 33.3023 60.7471 33.9339C60.2459 34.5724 59.6109 35.0633 58.8419 35.4066C58.073 35.7567 57.1461 35.9318 56.0614 35.9318Z" fill="white" />
@@ -8,25 +8,25 @@ export const IconOnlypacks = ({ className }: IconsProps) => (
     </svg>
 );
 
-export const IconLens = ({ strokeWidth, className }: IconsProps) => (
+export const IconLens = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
     </svg>
 );
 
-export const IconHeart = ({ strokeWidth, className }: IconsProps) => (
+export const IconHeart = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
     </svg>
 );
 
-export const IconStar = ({ strokeWidth, className }: IconsProps) => (
+export const IconStar = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
     </svg>
 );
 
-export const IconCaseros = ({ strokeWidth, className }: IconsProps) => (
+export const IconCaseros = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M8 9h8" />
@@ -35,13 +35,13 @@ export const IconCaseros = ({ strokeWidth, className }: IconsProps) => (
     </svg>
 );
 
-export const IconHome = ({ strokeWidth, className }: IconsProps) => (
+export const IconHome = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
     </svg>
 );
 
-export const IconOnlyfans = ({ strokeWidth, className }: IconsProps) => (
+export const IconOnlyfans = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M8.5 6a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0 -13z" />
@@ -50,32 +50,32 @@ export const IconOnlyfans = ({ strokeWidth, className }: IconsProps) => (
     </svg>
 );
 
-export const IconTelegram = ({ strokeWidth, className }: IconsProps) => (
+export const IconTelegram = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
     </svg>
 );
 
-export const IconXmark = ({ strokeWidth, className }: IconsProps) => (
+export const IconXmark = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
     </svg>
 );
 
-export const IconGlobe = ({ strokeWidth, className }: IconsProps) => (
+export const IconGlobe = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m6.115 5.19.319 1.913A6 6 0 0 0 8.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 0 0 2.288-4.042 1.087 1.087 0 0 0-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 0 1-.98-.314l-.295-.295a1.125 1.125 0 0 1 0-1.591l.13-.132a1.125 1.125 0 0 1 1.3-.21l.603.302a.809.809 0 0 0 1.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 0 0 1.528-1.732l.146-.292M6.115 5.19A9 9 0 1 0 17.18 4.64M6.115 5.19A8.965 8.965 0 0 1 12 3c1.929 0 3.716.607 5.18 1.64" />
     </svg>
 );
 
-export const IconChevronRight = ({ strokeWidth, className }: IconsProps) => (
+export const IconChevronRight = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
     </svg>
 );
 
-export const IconChevronLeft = ({ strokeWidth, className }: IconsProps) => (
+export const IconChevronLeft = ({ strokeWidth, className }: IconProps ) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={strokeWidth} stroke="currentColor" className={className} aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
     </svg>

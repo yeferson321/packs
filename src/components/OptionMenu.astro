@@ -1,0 +1,108 @@
+---
+interface Props { 
+    packId: string;  
+    percent: number;
+};
+
+const { packId } = Astro.props;
+---
+
+<div class="flex justify-around">
+                    
+    <button id="love-button" data-pack={packId} type="button" class="flex flex-col items-center text-xs text-neutral-350 transition ease-in-out active:scale-125 duration-300">
+        <svg id="love-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350">
+            <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+        </svg>  
+        <span class="mt-1">Favorito</span>                      
+    </button>
+
+    <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+            <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+        </svg>
+        <span class="mt-1">Descargar</span>                     
+    </button>
+
+    <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+            <path fill-rule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clip-rule="evenodd" />
+        </svg>   
+        <span class="mt-1">Compartir</span>   
+    </button>
+
+    <button type="button" class="flex flex-col items-center text-xs text-neutral-350 hover:text-white group">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-neutral-350 group-hover:fill-white">
+            <path fill-rule="evenodd" d="M3 2.25a.75.75 0 0 1 .75.75v.54l1.838-.46a9.75 9.75 0 0 1 6.725.738l.108.054A8.25 8.25 0 0 0 18 4.524l3.11-.732a.75.75 0 0 1 .917.81 47.784 47.784 0 0 0 .005 10.337.75.75 0 0 1-.574.812l-3.114.733a9.75 9.75 0 0 1-6.594-.77l-.108-.054a8.25 8.25 0 0 0-5.69-.625l-2.202.55V21a.75.75 0 0 1-1.5 0V3A.75.75 0 0 1 3 2.25Z" clip-rule="evenodd" />
+        </svg> 
+        <span class="mt-1">Denunciar</span>                     
+    </button>
+
+</div>
+
+<script>
+    const loveButton = document.getElementById('love-button') as HTMLButtonElement;
+    const loveIcon = document.getElementById('love-icon') as unknown as SVGElement;
+    const packId = loveButton.dataset.pack || "";
+    const MAX_FAVORITES = 100;
+
+    interface FavoriteIds {
+        id: string;
+    };
+
+    const toggleButtonColor = () => {
+        loveButton.classList.toggle('text-neutral-350');
+        loveButton.classList.toggle('text-amber-500');
+        loveIcon.classList.toggle('fill-neutral-350');
+        loveIcon.classList.toggle('fill-amber-500');
+    };
+
+    const getFavoriteIds = (): FavoriteIds[] => {
+        try {
+            const storedData = localStorage.getItem('favoritePacks');
+            const favoriteIds: FavoriteIds[] = storedData ? JSON.parse(storedData) : [];
+
+            if (!Array.isArray(favoriteIds) || !favoriteIds.every(item => typeof item === 'object' && 'id' in item)) {
+                localStorage.setItem('favoritePacks', JSON.stringify([]));
+                return [];
+            };
+
+            return favoriteIds;
+        } catch (error) {
+            /* console.error('Error retrieving favoritePacks from localStorage', error); */
+            return [];
+        };
+    };
+
+    const updateFavoriteIds = (packId: string) => {
+        const favoriteIds = getFavoriteIds();
+        const index = favoriteIds.findIndex(item => item.id === packId);
+
+        if (index !== -1) {
+            toggleButtonColor();
+            favoriteIds.splice(index, 1);
+        } else {
+            if (favoriteIds.length >= MAX_FAVORITES) return alert('Límite de favoritos alcanzado.');
+
+            toggleButtonColor();
+            favoriteIds.push({ id: packId });
+        };
+
+        localStorage.setItem('favoritePacks', JSON.stringify(favoriteIds));
+    };
+
+    loveButton.addEventListener('click', () => {
+        updateFavoriteIds(packId);
+    });
+
+    const loadButtonColor = (packId: string) => {
+        const favoriteIds = getFavoriteIds();
+        const exists = favoriteIds.some(item => item.id === packId);
+
+        if (exists) {
+            loveButton.classList.replace('text-neutral-350', 'text-amber-500');
+            loveIcon.classList.replace('fill-neutral-350', 'fill-amber-500');
+        };
+    };
+    
+    loadButtonColor(packId);
+</script>

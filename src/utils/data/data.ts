@@ -1,4 +1,4 @@
-import type { Packs, TabsElements, Trends } from '../types/definitions';
+import type { Packs, Tabs, Trends } from '../types/definitions';
 
 export const trendingSearches: Trends[] = [
     { trend: "jocelyn macias", href: "jocelyn macias" },
@@ -12,7 +12,7 @@ export const trendingSearches: Trends[] = [
     { trend: "valentina nappi", href: "valentina nappi" },
 ];
 
-export const tabsElements: TabsElements[] = [
+export const tabsElements: Tabs[] = [
     { name: "INICIO", href: "/" },
     { name: "CASEROS", href: "/caseros" },
     { name: "ONLYFANS", href: "/onlyfans" },

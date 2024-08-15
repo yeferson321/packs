@@ -1,15 +1,15 @@
-export interface IconsProps {
+export interface IconProps {
     strokeWidth?: string | number | undefined;
     className?: string | undefined;
 };
 
-export interface Trends {
+export interface Tabs {
+    name: string;
     href: string;
-    trend: string;
 };
 
-export interface TabsElements {
-    name: string;
+export interface Trends {
+    trend: string;
     href: string;
 };
 
@@ -28,10 +28,17 @@ export interface PacksResponse {
     status: string;
     data: {
         stats: {
-            total: number;
             totalPacks: number;
         };
         packs: Packs[];
+    };
+};
+
+export interface PackResponse {
+    status: string;
+    data: {
+        pack: Packs;
+        related: Packs[];
     };
 };
 
@@ -41,3 +48,28 @@ export interface PageRange {
     hideLeftContent: boolean;
     hideRightContent: boolean;
 };
+
+export interface FavoriteIds {
+    id: string;
+};
+
+
+/* 
+
+
+export const getViewPack = async (id: string): Promise<PackResponse> => {
+    const filteredPack = packs.find(pack => pack.id === id);
+
+    const recommended = getRandoPacks(4);
+
+    return {
+        status: "success",
+        data: {
+            pack: filteredPack,
+            recommended: recommended,
+        },
+    };
+};
+
+
+ */

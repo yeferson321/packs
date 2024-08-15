@@ -4,9 +4,21 @@ import type { Packs } from "../../utils/types/definitions";
 import { packs } from "../../utils/data/data";
 
 export const GET: APIRoute = ({ request }) => {
-    const { url } = request;
-    const urlObject = new URL(url);
-    const limit: number = parseInt(urlObject.searchParams.get("limit") || "12");
+    const token = request.headers.get("X-Auth-Token");
+
+    if (token == null || token !== import.meta.env.SECRET_TOKEN) {
+        return new Response(
+            JSON.stringify({
+                status: "fail",
+                type: "Authorization Error",
+                message: "You do not have permission to access this resource.",
+            }),
+            { status: 401, headers: { "Content-Type": "application/json" } }
+        );
+    }; 
+    
+    const urlParams = new URL(request.url);
+    const limit: number = parseInt(urlParams.searchParams.get("limit") || "12");
 
     const randomPacks: Packs[] = [];
     let len = packs.length;
@@ -21,17 +33,16 @@ export const GET: APIRoute = ({ request }) => {
         taken[x] = --len in taken ? taken[len] : len;
     };
 
-    const total = randomPacks.length;
-    const totalPacks = packs.length;
+    const totalPacks = randomPacks.length;
 
     return new Response(
         JSON.stringify({
-                status: "success",
-                data: {
-                    stats: { total: total, totalPacks: totalPacks },
-                    packs: randomPacks,
-                },
-            }),
+            status: "success",
+            data: {
+                stats: { totalPacks: totalPacks },
+                packs: randomPacks,
+            },
+        }),
         { status: 200, headers: { "Content-Type": "application/json" } }
     );
 };

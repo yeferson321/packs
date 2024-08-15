@@ -1,11 +1,11 @@
 ---
-import type { IconsProps } from '../utils/types/definitions';
+import type { IconProps } from '../utils/types/definitions';
 import { tabsElements } from '../utils/data/data';
 import { IconHome, IconCaseros, IconOnlyfans, IconTelegram } from './icons/react/outline';
 
 const { pathname } = Astro.url;
 
-const iconMap: Record<string, ({ strokeWidth, className }: IconsProps) => JSX.Element> =  {
+const iconMap: Record<string, ({ strokeWidth, className }: IconProps) => JSX.Element> =  {
     INICIO: IconHome,
     CASEROS: IconCaseros,
     ONLYFANS: IconOnlyfans,

@@ -1,63 +1,68 @@
 import { useEffect, useState } from 'react';
 import type { PacksResponse } from '../../utils/types/definitions';
 import Gallery from './Gallery';
+import Pagination from './Pagination';
 
 interface Props {
 	page: number;
 	itemsPerPage: number;
 	offset: number;
-	message?: string | null | undefined;
-	fallback?: string | null | undefined;
+	message?: string | undefined;
+	fallback?: string | undefined;
 };
 
 export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Props) => {
-    const [noFound, setNoFound] = useState<boolean>();
-    const [data, setData] = useState<PacksResponse | undefined>(undefined);
+	const [data, setData] = useState<PacksResponse['data'] | null>(null);
+	const [hasFavorites, setHasFavorites] = useState(true);
+	const [loading, setLoading] = useState(true);
 	const favoritePacks: string[] = JSON.parse(window.localStorage.getItem('favoritePacks') || "[]");
 	const validFavorite: string[] = favoritePacks.filter(id => id !== '');
-/* 
-	console.log(`/api/test-post?limit=${itemsPerPage}&offset=${offset}&favorites=${favoritePacks}`)
- */
+
+	const totalPacks = data?.stats?.totalPacks ?? 0;
+	const startItem = (page - 1) * itemsPerPage + 1;
+    const endItem = Math.min(page * itemsPerPage, totalPacks);
+
 	const removeFavorites = () => {
-		window.localStorage.removeItem('favoritePacks'); 
-		setNoFound(false);
+		window.localStorage.removeItem('favoritePacks');
+		setHasFavorites(false);
 	};
 
 	useEffect(() => {
-		if (validFavorite.length) {
-			 const getData = async () => {
-				const res = await fetch(`/api/packs.json?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validFavorite)}`);
-
-				// This will activate the closest `error.js` Error Boundary
-				if (!res.ok) throw new Error('Failed to fetch data');
-
-				const data: PacksResponse = await res.json();
-
-				console.log("data", !data.data.packs.length)
-				if (!data.data.packs.length) {
-					setNoFound(false);
-					return;
-				};
-
-				setNoFound(true);
-				setData(data);
-			}; 
-			getData(); 
-		} else {
-			setNoFound(false);
+		if (!validFavorite.length) {
+			setLoading(false);
+			setHasFavorites(false);
+			return;
 		};
+		
+		const getData = async () => {
+			const response = await fetch(`/api/packs.json?limit=${itemsPerPage}&offset=${offset}&favorites=${JSON.stringify(validFavorite)}`, {
+				headers: { 'X-Auth-Token': import.meta.env.PUBLIC_TOKEN }
+			});
+
+			if (!response.ok) window.location.href = "/404";
+			
+			const { data }: PacksResponse = await response.json();
+
+			if (!data.packs.length) {
+				setHasFavorites(false);
+			} else {
+				setData(data);
+				setHasFavorites(true);
+			};
+
+			setLoading(false);
+		};
+		getData();
 	}, [offset]);
 
-	if (noFound === undefined) {
-        return fallback
-    }
+	if (loading) return fallback;
 
 	return (
-		noFound ? (
+		hasFavorites ? (
 			<main className="max-w-screen-lg mx-auto p-4">
 				{message}
 				<div className="my-3">
-					<p className="text-xs text-white">Mostrando {page}-{offset} de {data?.data.stats.total}.</p>
+					<p className="text-xs text-white">Mostrando {startItem} - {endItem} de {totalPacks}.</p>
 					<button type="button" onClick={() => removeFavorites()} className="text-xs text-amber-500 hover:underline">
 						Eliminar todos mis packs favoritos
 					</button>
@@ -65,10 +70,13 @@ export const Favorite = ({ page, itemsPerPage, offset, message, fallback }: Prop
 				<h2 className="text-white text-base">
 					Los packs que marques como favoritos podrían desaparecer si navegas en modo incógnito.
 				</h2>
-				<Gallery packs={data?.data.packs ?? []} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+				<Gallery packs={data?.packs || []} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+				{totalPacks > itemsPerPage &&
+					<Pagination totalItems={totalPacks} itemsPerPage={itemsPerPage} currentPage={page} maxPages={4} minPages={3} />
+				}
 			</main>
 		) : (
-			<main slot="noFavorites" className="max-w-screen-lg mx-auto px-4 py-12">
+			<main className="max-w-screen-lg mx-auto px-4 py-12">
 				<div className="text-center">
 					<div className="flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-16 h-16 fill-white">
