@@ -14,6 +14,6 @@ const limit: number = 12;
             <a href="/" class="text-xs text-amber-500 hover:underline">Volver a la página principal</a>
         </div>
         <h2 class="text-white text-base">Packs calientes recomendados</h1>
-        <RandomPacks limit={limit}/>
+        <RandomPacks server:defer limit={limit}/>
     </main>
 </Layout>
