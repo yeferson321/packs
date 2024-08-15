@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { Packs } from '../utils/types/definitions';
 import { IconThumbUp } from './icons/react/solid';
+import GallerySkeleton from './skeletons/GallerySkeleton.astro';
 
 interface Props {
     className: string;
@@ -21,6 +22,10 @@ const getStatus = (date: Date): { status: string, background: string } => {
     return { status: 'RECOMENDADO', background: 'bg-blue-500' };
 };
 ---
+
+{packs.length === 0 ? 
+    <GallerySkeleton slot="skeleton" className="mt-6 grid grid-cols-2 gap-4" itemCount={4}/>
+: 
 
 <div class={className}>
     {packs.map((pack) => {
@@ -44,3 +49,4 @@ const getStatus = (date: Date): { status: string, background: string } => {
         )
     })}
 </div>
+}
