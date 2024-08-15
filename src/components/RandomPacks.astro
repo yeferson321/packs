@@ -1,6 +1,6 @@
 ---
 import type { PacksResponse } from '../utils/types/definitions';
-import Gallery from './react/Gallery';
+import Gallery from './Gallery.astro';
 
 interface Props {   
     limit: number;
@@ -15,8 +15,6 @@ const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${
 if (!response.ok) return Astro.redirect("/404");
 
 const { data }: PacksResponse = await response.json();
-
-console.log("se ejecuto")
 ---
 
 <Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
