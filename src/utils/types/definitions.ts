@@ -52,24 +52,3 @@ export interface PageRange {
 export interface FavoriteIds {
     id: string;
 };
-
-
-/* 
-
-
-export const getViewPack = async (id: string): Promise<PackResponse> => {
-    const filteredPack = packs.find(pack => pack.id === id);
-
-    const recommended = getRandoPacks(4);
-
-    return {
-        status: "success",
-        data: {
-            pack: filteredPack,
-            recommended: recommended,
-        },
-    };
-};
-
-
- */

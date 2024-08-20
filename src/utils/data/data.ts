@@ -23,7 +23,7 @@ export const packs: Packs[] = [
     {
         id: "234fwdf436y35tg",
         percent: 1,
-        hot: new Date("2024-07-05T10:00:00"),
+        hot: new Date("2024-08-20T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien gorda",
         categories: ["Aficionado", "Escuela", "Colombianas", "Babe", "Trios", "Publico", "Orgias", "Pelirojas", "Pelirojas"],
@@ -31,7 +31,7 @@ export const packs: Packs[] = [
     {
         id: "34f3g34g34g3345g",
         percent: 2,
-        hot: new Date("2024-07-05T10:00:00"),
+        hot: new Date("2024-08-20T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com me follo trios que bien",
         categories: ["Aficionado", "Caseros", "Gordas", "Teen", "Sexo duro", "Publico", "Orgias", "Pelirojas", "Pelirojas"],
@@ -39,7 +39,7 @@ export const packs: Packs[] = [
     {
         id: "34g35gerfw4g34tg4",
         percent: 3,
-        hot: new Date("2024-07-05T10:00:00"),
+        hot: new Date("2024-08-20T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
         categories: ["Sexo duro", "Bisexual", "Teen", "Culos", "Celebridades", "Publico", "Orgias", "Pelirojas", "Pelirojas"],
@@ -47,7 +47,7 @@ export const packs: Packs[] = [
     {
         id: "45g35gsfe5r6578546",
         percent: 4,
-        hot: new Date("2024-07-05T10:00:00"),
+        hot: new Date("2024-08-20T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
         categories: ["Aficionado", "Escuela", "Colombianas", "Babe", "Trios", "Publico", "Orgias", "Pelirojas", "Pelirojas"],
@@ -55,7 +55,7 @@ export const packs: Packs[] = [
     {
         id: "sdbnrm3f34f398hgf3",
         percent: 5,
-        hot: new Date("2024-07-05T10:00:00"),
+        hot: new Date("2024-08-20T10:00:00"),
         src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
         title: "Hola com estas espero que bien",
         categories: ["Aficionado", "Escuela", "Colombianas", "Babe", "Trios"],

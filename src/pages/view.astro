@@ -1,17 +1,12 @@
 ---
 export const prerender = false;
-
 import { Image } from 'astro:assets';
 import type { PackResponse } from '../utils/types/definitions';
 import Layout from '../layouts/Layout.astro';
-
-
 import Message from '../components/Message.astro';
-/* import Gallery from '../components/Gallery.astro';
- */
-import OptionMenu from '../components/OptionMenu.astro'
-/* const RandomPacks = await import("../components/RandomPacks");
- */
+import OptionMenu from '../components/OptionMenu.astro';
+import RandomPacks from '../components/RandomPacks.astro';
+import Gallery from '../components/Gallery.astro';
 import TabsView from '../components/react/TabsView';
 import GallerySkeleton from '../components/skeletons/GallerySkeleton.astro';
 
@@ -34,46 +29,40 @@ const { data }: PackResponse = await response.json();
 
         <div class="mt-6 grid xs:grid-cols-8 gap-y-10 xs:gap-x-16">
 
-            <div class="xs:col-span-5 xs:space-x-6">
+            <div class="xs:col-span-5 space-y-4">
+      
+                <div class="w-full flex justify-center">
+                    <Image src={data.pack?.src} width="360" height="524" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={data.pack?.title} />
+                </div>
             
-                <div class="w-full space-y-4">
-                    
-                
-                    <div class="w-full flex justify-center">
-                        <Image src={data.pack?.src} width="360" height="524" format="jpg" decoding="async" loading="lazy" quality='max' class="h-auto max-w-full rounded-lg" alt={data.pack?.title} />
-                    </div>
-                
-                    <OptionMenu packId={data.pack.id} percent={data.pack.percent}/>
-                
-                    <div class="pt-3 pb-4 space-y-2 border-y border-neutral-800">
-                        <p class="text-base text-neutral-400">Categorias</p>
-                        <ul class="flex flex-wrap gap-2 xs:gap-3 text-sm text-white">
-                            {data.pack?.categories.map((categorie) => (
-                                <li>
-                                    <a href={`search?search=${categorie}`} class="block py-2 px-3.5 rounded-lg bg-neutral-900 hover:bg-neutral-800">
-                                        {categorie}                           
-                                    </a>
-                                </li>
-
-                            ))}
-                        </ul>
-                    </div>
-                
+                <OptionMenu packId={data.pack.id} percent={data.pack.percent}/>
+            
+                <div class="pt-3 pb-4 space-y-2 border-y border-neutral-800">
+                    <p class="text-base text-neutral-400">Categorias</p>
+                    <ul class="flex flex-wrap gap-2 xs:gap-3 text-sm text-white">
+                        {data.pack?.categories.map((categorie) => (
+                            <li>
+                                <a href={`search?search=${categorie}`} class="block py-2 px-3.5 rounded-lg bg-neutral-900 hover:bg-neutral-800">
+                                    {categorie}                           
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             
             </div>
 
-{/*
-            <div class="max-xs:hidden space-y-3 col-start-6 col-end-9">
-                <h2 class="text-white text-base font-semibold">Packs calientes relacionados</h1>
-                <Gallery client:only="react" packs={data.recommended} className="grid grid-cols-2 gap-4" />
-            </div> */}
-            {/* <div class="max-xs:hidden space-y-3 col-start-1 col-end-9">
-                <h2 class="text-white text-base font-semibold">Packs calientes recomendados</h1>
-                <Gallery client:only="react" packs={data.recommended} className="grid grid-cols-3 lg:grid-cols-4 gap-4" />
-            </div> */}
+           <div class="max-xs:hidden space-y-3 col-start-6 col-end-9">
+                <h2 class="text-white text-base font-semibold">Packs calientes en tendencia</h1>
+                <RandomPacks className="mt-6 grid grid-cols-2 gap-4" limit={4} />
+            </div>
 
-            <TabsView client:load related={data.related}>
+            <div class="max-xs:hidden space-y-3 col-start-1 col-end-9">
+                <h2 class="text-white text-base font-semibold">Packs calientes relacionados</h1>
+                <Gallery packs={data.related} className="mt-6 grid grid-cols-3 lg:grid-cols-4 gap-4" />
+            </div>
+
+            <TabsView client:visible related={data.related}>
                 <GallerySkeleton slot="skeleton" className="mt-6 grid grid-cols-2 gap-4" itemCount={4}/>
             </TabsView>
             
@@ -82,4 +71,3 @@ const { data }: PackResponse = await response.json();
 	</main>
 
 </Layout>
-

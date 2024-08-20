@@ -3,10 +3,11 @@ import type { PacksResponse } from '../utils/types/definitions';
 import Gallery from './Gallery.astro';
 
 interface Props {   
+    className: string;
     limit: number;
 };
 
-const { limit } = Astro.props;
+const { className, limit } = Astro.props;
 
 const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${limit}`, {
     headers: { 'X-Auth-Token': import.meta.env.SECRET_TOKEN }
@@ -15,6 +16,9 @@ const response = await fetch(`${Astro.url.origin}/api/random-packs.json?limit=${
 if (!response.ok) return Astro.redirect("/404");
 
 const { data }: PacksResponse = await response.json();
+
+
+console.log("hika")
 ---
 
-<Gallery packs={data.packs} className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" />
+<Gallery packs={data.packs} className={className} />

@@ -27,6 +27,7 @@ const TabsView = ({ related, skeleton }: Props) => {
         const currentTab = tabs[activeTab];
 
         if (currentTab && currentTab.fetchUrl && !tabData[activeTab]) {
+            console.log("se hizo la solicitud")
             setLoading(true);
             const response = await fetch(`${window.location.origin}${currentTab.fetchUrl}`, {
                 headers: { 'X-Auth-Token': import.meta.env.PUBLIC_TOKEN }
@@ -38,14 +39,17 @@ const TabsView = ({ related, skeleton }: Props) => {
             setTabData((prev) => ({ ...prev, [activeTab]: data.packs }));
             setLoading(false);
         };
+
     }, [activeTab, tabData]);
 
     useEffect(() => {
         fetchData();
     }, [activeTab, fetchData]);
 
+    console.log("cargo el componente")
+
     return (
-        <div className="min-w-full">
+        <div className="min-w-full xs:hidden">
             <div className="flex flex-nowrap text-nowrap text-white text-base overflow-x-auto touch-pan-x hide-scroll">
                 {tabs.map((tab, index) => (
                     <button type="button" key={index} onClick={() => setActiveTab(index)} className={`px-4 py-3 ${activeTab === index && "rounded-full bg-neutral-800"}`}>

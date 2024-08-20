@@ -14,6 +14,6 @@ const limit: number = 12;
             <a href="/" class="text-xs text-amber-500 hover:underline">Volver a la página principal</a>
         </div>
         <h2 class="text-white text-base">Packs calientes recomendados</h1>
-        <RandomPacks server:defer limit={limit}/>
+        <RandomPacks server:defer className="mt-6 grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-4" limit={limit}/>
     </main>
 </Layout>

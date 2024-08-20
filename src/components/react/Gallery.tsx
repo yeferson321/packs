@@ -4,9 +4,10 @@ import { IconThumbUp } from '../icons/react/solid';
 interface Props {
     className: string;
     packs: Packs[];
+    fallback?: string | undefined;
 };
 
-const Gallery = ({ className, packs }: Props) => {
+const Gallery = ({ className, packs, fallback }: Props) => {
     const getStatus = (date: Date): { status: string, background: string } => {
         const now = new Date();
         const differenceInMilliseconds = now.getTime() - date.getTime();
@@ -17,6 +18,8 @@ const Gallery = ({ className, packs }: Props) => {
         
         return { status: 'RECOMENDADO', background: 'bg-blue-500' };
     };
+
+    if (packs.length === 0) return fallback;
 
     return (
         <div className={className}>
